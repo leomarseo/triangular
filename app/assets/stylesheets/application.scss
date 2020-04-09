@@ -11,3 +11,34 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+.body-master {
+  background-color: $green;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+
+footer a {
+  color: grey !important;
+}
+
+
+footer i:hover {
+  color: black !important;
+  cursor: pointer;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+nav .dropdown-toggle:hover {
+  cursor: pointer;
+}
