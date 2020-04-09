@@ -225,8 +225,8 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
-  font-awesome-sass (~> 5.12.0)
   devise
+  font-awesome-sass (~> 5.12.0)
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
