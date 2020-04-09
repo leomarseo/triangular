@@ -10,19 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_08_144407) do
+ActiveRecord::Schema.define(version: 2020_04_09_104440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "listings", force: :cascade do |t|
+    t.float "price"
+    t.string "start_time"
+    t.string "end_time"
+    t.bigint "mask_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mask_id"], name: "index_listings_on_mask_id"
+  end
+
   create_table "masks", force: :cascade do |t|
     t.string "description"
     t.string "condition"
-    t.float "price"
     t.string "size"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "active"
     t.index ["user_id"], name: "index_masks_on_user_id"
   end
 
@@ -33,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_04_08_144407) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "active"
     t.index ["mask_id"], name: "index_reservations_on_mask_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
@@ -55,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_04_08_144407) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "listings", "masks"
   add_foreign_key "masks", "users"
   add_foreign_key "reservations", "masks"
   add_foreign_key "reservations", "users"
