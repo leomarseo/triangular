@@ -9,13 +9,14 @@
 
 
   </head>
-
+  
   <body class="body-master">
     <%= render 'layouts/navbar' %>
 
     <%= yield %>
 
-
+    <p class="notice"><%= notice %>Warning!</p>
+    <p class="alert"><%= alert %>Stop!</p>
     <%= render 'layouts/footer' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
