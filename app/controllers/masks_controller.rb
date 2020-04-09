@@ -1,0 +1,2 @@
+class MasksController < ApplicationController
+end

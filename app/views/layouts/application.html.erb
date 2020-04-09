@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Triangular</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+
+  </head>
+  
+  <body class="body-master">
+    <%= render 'layouts/navbar' %>
+
+    <%= yield %>
+
+    <p class="notice"><%= notice %>Warning!</p>
+    <p class="alert"><%= alert %>Stop!</p>
+    <%= render 'layouts/footer' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <%= yield %>
   </body>
 </html>
