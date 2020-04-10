@@ -4,5 +4,5 @@ class Mask < ApplicationRecord
   has_many :reviews, as: :reviewable
   validates :description, presence: true
   validates :condition, presence: true
-  validates :size, presence: true, inclusion: { in: %w(Child Adult Hagrid) }
+  validates :size, presence: true, inclusion: { in: %w[Child Adult Hagrid] }
 end

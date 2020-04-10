@@ -1,0 +1,10 @@
+<% @masks.each do |mask| %>
+
+<p><%= mask.description %></p>
+<p>Condition: <%= mask.condition %></p>
+<p>Size: <%= mask.size %></p>
+<p>Available from <%= mask.start_time %> to <%= mask.end_time %></p>
+<p>Price: <%= mask.price %></p>
+<p>Listed by: <%= mask.user.first_name %></p>
+<hr>
+<% end %>
