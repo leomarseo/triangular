@@ -23,15 +23,15 @@ ActiveRecord::Schema.define(version: 2020_04_09_170148) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "deleted"
-    t.string "start_time"
-    t.string "end_time"
+    t.date "start_time"
+    t.date "end_time"
     t.float "price"
     t.index ["user_id"], name: "index_masks_on_user_id"
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.string "start_time"
-    t.string "end_time"
+    t.date "start_time"
+    t.date "end_time"
     t.bigint "mask_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
