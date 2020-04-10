@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <h1>All masks</h1>
+      <ul class="list-group">
+        <% @masks.each do |mask| %>
+          <li class="list-group-item">
+            <% if policy(restaurant).edit? %>
+              <%= link_to "Update", edit_restaurant_path(restaurant) %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <%= link_to "Add a new Restaurant", new_restaurant_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>

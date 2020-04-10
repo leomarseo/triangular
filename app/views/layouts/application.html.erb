@@ -9,14 +9,14 @@
 
 
   </head>
-  
-  <body class="body-master">
-    <%= render 'layouts/navbar' %>
 
+  <body class="body-master">
+    <%= render 'shared/navbar' %>
+    <%= render 'shared/flashes' %>
     <%= yield %>
 
-    <p class="notice"><%= notice %>Warning!</p>
-    <p class="alert"><%= alert %>Stop!</p>
+    <!-- <p class="notice"><%= notice %>Warning!</p>
+    <p class="alert"><%= alert %>Stop!</p> -->
     <%= render 'layouts/footer' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
