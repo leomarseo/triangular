@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :listings do
     resources :reservations, only: %i(new create edit show update)
+  end
 
   root to: 'pages#home'
   get '/dashboard', to: 'pages#dashboard'
