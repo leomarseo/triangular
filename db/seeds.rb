@@ -36,6 +36,7 @@ array_size = ['Child', 'Adult', 'Hagrid']
 condition = ['used', 'new']
 300.times do |i|
   mask = Mask.create!(
+    name: Faker::DcComics.name,
     user: User.all.sample,
     description: Faker::Books::Dune.saying,
     condition: condition.sample,
