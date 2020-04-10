@@ -4,7 +4,7 @@ class MasksController < ApplicationController
   end
 
   def new
-    @mask = Mask.new(user: User.new)
+    @mask = Mask.new
   end
 
   def create
