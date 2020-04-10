@@ -1,14 +1,52 @@
 <% @masks.each do |mask| %>
-  <% return if mask.deleted %>
+<% return if mask.deleted %>
 
-  <div>
-    <p><%= mask.description %></p>
-    <p>Condition: <%= mask.condition %></p>
-    <p>Size: <%= mask.size %></p>
-    <p>Price: <%= mask.price % 1 == 0 ? mask.price.truncate : mask.price %>€</p>
-    <%= link_to 'show details', mask_path(mask.id), class: 'btn btn-primary' %>
-  </div>
-  <hr>
+<div>
+  <p><%= mask.description %></p>
+  <p><%= mask.description %></p>
+  <p>Condition: <%= mask.condition %></p>
+  <p>Size: <%= mask.size %></p>
+  <p>Price: <%= mask.price % 1 == 0 ? mask.price.truncate : mask.price %>€</p>
+  <%= link_to 'show details', mask_path(mask.id), class: 'btn btn-primary' %>
+</div>
+<hr>
 <% end %>
+
+<div class="container">
+  <div class="input-group mb-3 searchbar">
+    <input type="text" class="form-control" placeholder="Search here..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button">Search</button>
+    </div>
+  </div>
+
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="triangular/app/assets/images/sur.png.jpg" alt="This is a mask">
+    <div class="card-body">
+      <h5 class="card-title">Surgery mask</h5>
+      <p class="card-text">This is a beautiful mask, the best to protect yourself from germs</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">10$/day</li>
+      <li class="list-group-item">Like new</li>
+      <li class="list-group-item">
+        <label for="size-drop">Size</label>
+        <select id="size-drop" class="form-control form-control-sm">
+          <option>Child</option>
+          <option>Adult</option>
+          <option>Hagrid</option>
+        </select>
+      </li>
+    </ul>
+    <div class="card-body">
+      <button class="btn btn-primary btn-lg btn-block" type="button">Show details</button>
+    </div>
+  </div>
+
+</div> <!-- This is the end of div.container -->
+
+
+
+
 
 
