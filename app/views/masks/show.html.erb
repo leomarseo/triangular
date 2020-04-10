@@ -1,0 +1,12 @@
+<div>
+
+  <p>Description: <%= @mask.description %></p>
+  <p>Condition: <%= @mask.condition %></p>
+  <p>Size: <%= @mask.size %></p>
+  <p>Offered by: <%= @mask.user.first_name %></p>
+  <p>From <%= @mask.start_time %> to <%= @mask.end_time %></p>
+  <p>Price: <%= mask.price % 1 == 0 ? mask.price.truncate : mask.price %>€</p>
+
+</div>
+
+<%= link_to 'back', masks_path, class: 'btn btn-primary' %>
