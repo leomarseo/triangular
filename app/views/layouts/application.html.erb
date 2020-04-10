@@ -11,13 +11,16 @@
   </head>
 
   <body class="body-master">
-    <%= render 'layouts/navbar' %>
+    <%= render 'shared/navbar' %>
+    <%= render 'shared/flashes' %>
 
     <%= yield %>
 
-<!--     <p class="notice"><%= notice %>Warning!</p>
-    <p class="alert"><%= alert %>Stop!</p> -->
-    <%= render 'layouts/footer' %>
+    <!-- render 'layouts/footer'  -->
+
+    <!--  <p class="notice"><%= notice %>Warning!</p>
+      <p class="alert"><%= alert %>Stop!</p> -->
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
