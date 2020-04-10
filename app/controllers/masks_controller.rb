@@ -15,6 +15,13 @@ class MasksController < ApplicationController
     redirect_to masks_path
   end
 
+  def show
+    @mask = Mask.find(params[:id])
+  end
+
+
+  private
+
   def mask_params
     params.require(:mask).permit(:description, :condition, :size, :start_time, :end_time, :price)
   end
