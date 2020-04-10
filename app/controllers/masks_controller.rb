@@ -20,6 +20,16 @@ class MasksController < ApplicationController
     @mask = Mask.find(params[:id])
   end
 
+  def edit
+    @mask = Mask.find(params[:id])
+  end
+
+  def update
+    @mask = Mask.find(params[:id])
+    @mask.update(mask_params)
+    redirect_to pages_dashboard_path
+  end
+
   private
 
   def mask_params
