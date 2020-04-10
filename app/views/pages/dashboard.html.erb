@@ -1,0 +1,61 @@
+<h3><%= @user.first_name %> masks:</h3>
+<hr>
+
+
+<div> <!-- Masks container -->
+  <% @user.masks.each do |mask| %>
+
+    <div> <!-- Mask card -->
+      <p><%= mask.description %></p>
+      <p><%= mask.condition %></p>
+      <p><%= mask.size %></p>
+      <% if mask.start_time && mask.end_time %>
+
+        <div> <!-- Listing information -->
+
+          <h5>Listed</h5>
+          <p>from: <%= mask.start_time %></p>
+          <p>to: <%= mask.end_time %></p>
+          <p>price: <%= mask.price %></p>
+          <%= link_to 'edit listing', edit_mask_path(mask.id), class: "far fa-edit" %>
+
+        </div> <!-- /Listing information -->
+
+      <% else %>
+
+        <p>this mask is not yet on the market. List it now!</p>
+        <%= link_to 'add listing', edit_mask_path(mask.id), class: "fas fa-plus" %>
+      <% end %>
+      <hr>
+    </div> <!-- /Mask card -->
+
+  <% end %>
+
+</div> <!-- /Masks container -->
+
+
+
+
+<div> <!-- Reservations container -->
+
+
+
+
+
+
+
+
+</div> <!-- /Reservations container -->
+
+
+
+
+
+<div> <!-- Personal reviews container -->
+
+
+
+
+
+
+</div> <!-- /Personal reviews container -->
