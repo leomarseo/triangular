@@ -1,6 +1,7 @@
 class MasksController < ApplicationController
   def index
     @masks = Mask.all
+    @masks = Mask.where(mask_params) if params['mask'].present?
   end
 
   def new
@@ -18,7 +19,6 @@ class MasksController < ApplicationController
   def show
     @mask = Mask.find(params[:id])
   end
-
 
   private
 
