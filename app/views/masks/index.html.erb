@@ -1,15 +1,17 @@
 <% @masks.each do |mask| %>
-<% return if mask.deleted %>
+  <% return if mask.deleted %>
 
-<div>
-  <p><%= mask.description %></p>
-  <p><%= mask.description %></p>
-  <p>Condition: <%= mask.condition %></p>
-  <p>Size: <%= mask.size %></p>
-  <p>Price: <%= mask.price % 1 == 0 ? mask.price.truncate : mask.price %>€</p>
-  <%= link_to 'show details', mask_path(mask.id), class: 'btn btn-primary' %>
-</div>
-<hr>
+  <div>
+    <p><%= mask.description %></p>
+    <p>Condition: <%= mask.condition %></p>
+    <p>Size: <%= mask.size %></p>
+    <% unless mask.price.nil? %>
+      <p>Price: <%= mask.price % 1 == 0 ? mask.price.truncate : mask.price %>€</p>
+    <% end %>
+    <%= link_to 'show details', mask_path(mask.id), class: 'btn btn-primary' %>
+  </div>
+  <hr>
+
 <% end %>
 
 <div class="container">
