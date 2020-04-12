@@ -9,11 +9,10 @@ class MasksController < ApplicationController
   end
 
   def create
-    fake_user = User.find(1)
     mask = Mask.new(mask_params)
-    mask.user_id = fake_user.id
+    mask.user = current_user
     mask.save
-    redirect_to masks_path
+    redirect_to pages_dashboard_path
   end
 
   def show

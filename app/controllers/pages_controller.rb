@@ -3,6 +3,6 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @user = User.all.first
+    @user = current_user
   end
 end
