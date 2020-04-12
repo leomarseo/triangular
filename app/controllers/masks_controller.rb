@@ -1,7 +1,10 @@
 class MasksController < ApplicationController
   def index
-    @masks = Mask.all
-    @masks = Mask.where(mask_params) if params['mask'].present?
+    if params['mask'].present?
+      @masks = Mask.where(mask_params)
+    else
+      @masks = Mask.all
+    end
   end
 
   def new
