@@ -9,7 +9,7 @@
 # create a USERS seed
 #
 puts 'Creating 100 users...'
-50.times do |i|
+10.times do |i|
   user = User.create!(
     first_name: Faker::Games::Dota.hero,
     last_name: Faker::Games::HeroesOfTheStorm.hero,
@@ -19,7 +19,7 @@ puts 'Creating 100 users...'
   )
   puts "#{i + 1}. #{user.first_name} #{user.last_name}"
 end
-50.times do |i|
+10.times do |i|
   user = User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -34,7 +34,7 @@ end
 # users = User.all
 array_size = ['Child', 'Adult', 'Hagrid']
 condition = ['used', 'new']
-300.times do |i|
+20.times do |i|
   mask = Mask.create!(
     user: User.all.sample,
     description: Faker::Books::Dune.saying,
@@ -48,23 +48,23 @@ end
 
 # create a RESERVATIONS seed
 # create two separate groups of user: one for owners, another for renters
-# user.find / user.where
-# is_active = ['true', 'false']
-user_owner = User.all[0..49]
-user_renter = User.all[50..99]
+# user.find / user.where /user.include?
+is_active = ['true', 'false']
+user_owner = User.all[0..9]
+user_renter = User.all[10..20]
 all_masks = Mask.all
 # booked_mask = Mask.all.where("user_id: #{}")
-200.times do |i|
+10.times do |i|
   reservation = Reservation.create!(
     user_id: user_renter.sample,
-    mask_id: Mask.where("user_id = #{user_owner.id}"),
+    mask_id: all_masks.include?(user_owner.mask_id),
     start_time: Faker::Date.between(from: 15.days.ago, to: Date.today),
     end_time: Faker::Date.forward(days: 30),
-    # active: is_active.sample
-
-    )
-
+    active: is_active.sample
+  )
+end
 # create a REVIEWS seed
 #
 
 puts 'Finished!'
+

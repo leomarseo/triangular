@@ -4,5 +4,5 @@ class Reservation < ApplicationRecord
   has_many :reviews, as: :reviewable
   validates :start_time, presence: true
   validates :end_time, presence: true
-  validates :active, default: true
+  # validates :active, default: true
 end
