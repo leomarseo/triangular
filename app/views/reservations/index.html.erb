@@ -1,0 +1,10 @@
+<%= @reservations.each do |reservation| %>
+  <% if reservation.reservation_status != 'expired' %>
+    <%= reservation.mask.description %>
+    <%= reservation.mask.condition %>
+    <%= reservation.mask.size %>
+    <%= reservation.start_time %>
+    <%= reservation.end_time %>
+    <%= link_to reservation.mask.description, reservation_path(reservation.id) %>
+  <% end %>
+<% end %>
