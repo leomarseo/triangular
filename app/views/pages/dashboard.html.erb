@@ -43,6 +43,8 @@
       <p>from: <%= reservation.start_time %></p>
       <p>to: <%= reservation.end_time %></p>
       <p>price: <%= reservation.mask.price %></p>
+      <% reservation_status = reservation.confirmed ? "confirmed" : "pending" %>
+      <p>status: <%= reservation_status %></p>
       <%= link_to 'add review', new_review_path, class: 'btn btn-primary' %>
     <% end %>
   <% end %>
@@ -61,7 +63,10 @@
           <p>from: <%= reservation.start_time %></p>
           <p>to: <%= reservation.end_time %></p>
           <p>price: <%= reservation.mask.price %></p>
+          <% reservation_status = reservation.confirmed ? "confirmed" : "pending" %>
+          <p>status: <%= reservation_status %></p>
           <%= link_to 'add review', new_review_path, class: 'btn btn-primary' %>
+
         <% end %>
       <% end %>
 
