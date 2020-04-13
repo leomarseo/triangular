@@ -90,7 +90,6 @@ all_masks_uid = []
     # mask_id: Mask.joins(:user).where({user: user_owner.sample}),
     # mask_id: user_owner.sample.masks.sample.id,
     mask_id: random_owner,
-
     start_time: Faker::Date.between(from: 15.days.ago, to: Date.today),
     end_time: Faker::Date.forward(days: 30),
     active: is_active.sample
@@ -99,6 +98,7 @@ end
 
 
 # create a REVIEWS seed
+#
 #
 
 puts 'Finished!'
