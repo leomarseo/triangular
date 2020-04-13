@@ -4,6 +4,11 @@
 
 .sign-box {
   width: 400px;
+  display: inline-block;
+    p {
+      margin-top: 12px;
+      margin-bottom: 0;
+    }
 }
 
 .centered-box {
@@ -20,3 +25,4 @@
 .image-card-box {
   height: 200px;
 }
+
