@@ -1,9 +1,8 @@
-<h3><%= @user.first_name %> masks:</h3>
-<hr>
-
 <div><%= link_to 'add mask', new_mask_path, class: "btn btn-primary" %></div>
 
 <div> <!-- Masks container -->
+  <h3><%= @user.first_name %> masks:</h3>
+  <hr>
   <% @user.masks.each do |mask| %>
 
     <div> <!-- Mask card -->
@@ -34,19 +33,43 @@
 
 </div> <!-- /Masks container -->
 
+<div> <!-- Reservations(customer) container -->
+  <h3><%= @user.first_name %> reservations as customer:</h3>
+  <hr>
+  <% @user.reservations.each do |reservation| %>
+    <h5>mask: <%= reservation.mask.name %></h5>
+    <p>from: <%= reservation.start_time %></p>
+    <p>to: <%= reservation.end_time %></p>
+    <p>price: <%= reservation.mask.price %></p>
+    <%= link_to 'add review', new_review_path, class: 'btn btn-primary' %>
+  <% end %>
 
 
 
-<div> <!-- Reservations container -->
+
+
+</div> <!-- /Reservations(customer) container -->
+
+
+<div> <!-- Reservations(owner) container -->
+  <h3><%= @user.first_name %> reservations as owner:</h3>
+  <hr>
+  <% @user.masks.each do |mask|
+      mask.reservations.each do |reservation| %>
+        <h5>mask: <%= reservation.mask.name %></h5>
+        <p>from: <%= reservation.start_time %></p>
+        <p>to: <%= reservation.end_time %></p>
+        <p>price: <%= reservation.mask.price %></p>
+        <%= link_to 'add review', new_review_path, class: 'btn btn-primary' %>
+      <% end %>
+
+  <% end %>
 
 
 
 
 
-
-
-
-</div> <!-- /Reservations container -->
+</div> <!-- /Reservations(owner) container -->
 
 
 

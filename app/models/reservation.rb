@@ -4,9 +4,7 @@ class Reservation < ApplicationRecord
   belongs_to :mask
   belongs_to :user
   has_many :reviews, as: :reviewable
-  validates :start_time, presence: true
-  validates :end_time, presence: true
-  validates :active, default: true
+  validates_presence_of :mask, :user, :start_time, :end_time
 
   def reservation_status(start_date, end_date)
     date_today = DateTime.current.beginning_of_day
