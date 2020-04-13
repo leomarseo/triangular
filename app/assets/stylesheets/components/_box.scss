@@ -5,3 +5,14 @@
 .sign-box {
   width: 400px;
 }
+
+.centered-box {
+  text-align: center;
+}
+
+.li-inline {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}

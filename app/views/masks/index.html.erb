@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container main-box">
   <div class="input-group mb-3 searchbar">
     <input type="text" class="form-control" placeholder="Search here..." aria-label="Recipient's username" aria-describedby="basic-addon2">
     <div class="input-group-append">
@@ -6,32 +6,26 @@
     </div>
   </div>
 
-  <div class="cards-in-row">
+  <div class="cards-in-row centered-box">
     <% @masks.each do |mask| %>
       <% return if mask.deleted %>
 
       <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="triangular/app/assets/images/sur.png" alt="This is a mask">
+        <img class="card-img-top" src="triangular/app/assets/images/borat_mask.jpg" alt="This is a mask">
         <div class="card-body">
-          <h5 class="card-title"><%= mask.name %></h5>
-          <p class="card-text"><%= mask.description %></p>
+          <h5 class="card-title name-font-size"><%= mask.name %></h5>
         </div>
         <ul class="list-group list-group-flush">
           <% unless mask.price.nil? %>
-            <li class="list-group-item"><%= mask.price % 1 == 0 ? mask.price.truncate : mask.price %>€/day</li>
+            <li class="list-group-item others-font-size"><%= mask.price % 1 == 0 ? mask.price.truncate : mask.price %>€/day</li>
           <% end %>
-          <li class="list-group-item"><%= mask.condition %></li>
-          <li class="list-group-item">
-            <label for="size-drop"><%= mask.size %></label>
-            <select id="size-drop" class="form-control form-control-sm">
-              <option>Child</option>
-              <option>Adult</option>
-              <option>Hagrid</option>
-            </select>
-          </li>
+          <div class="li-inline">
+            <li class="list-group-item others-font-size"><%= mask.condition %></li>
+            <li class="list-group-item others-font-size"><%= mask.size %></li>
+          </div>
         </ul>
         <div class="card-body">
-          <%= link_to 'show details', mask_path(mask.id), class: 'btn btn-primary btn-lg btn-block' %>
+          <%= link_to 'show details', mask_path(mask.id), class: 'btn btn-primary btn-block' %>
         </div>
       </div>
     <% end %>
