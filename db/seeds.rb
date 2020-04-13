@@ -34,7 +34,20 @@ end
 # users = User.all
 array_size = ['Child', 'Adult', 'Hagrid']
 condition = ['used', 'new']
-20.times do |i|
+counter = 1
+# 10.times do |i|
+#   mask = Mask.create!(
+#     user: User.find(counter),
+#     description: Faker::Books::Dune.saying,
+#     condition: condition.sample,
+#     size: array_size.sample
+#     # email: Faker::Internet.email,
+#     # password: Faker::Internet.password
+#   )
+#   # puts "#{i + 1}. #{user.first_name} #{user.last_name}"
+#   counter += 1
+# end
+10.times do |i|
   mask = Mask.create!(
     user: User.all.sample,
     description: Faker::Books::Dune.saying,
@@ -46,23 +59,45 @@ condition = ['used', 'new']
   # puts "#{i + 1}. #{user.first_name} #{user.last_name}"
 end
 
+
 # create a RESERVATIONS seed
 # create two separate groups of user: one for owners, another for renters
 # user.find / user.where /user.include?
 is_active = ['true', 'false']
-user_owner = User.all[0..9]
-user_renter = User.all[10..20]
+#
+# must set accordingly when changing the users and masks seed above
+#
+def random_owner
+  Mask.all.sample.id
+end
+
+user_owner = User.all[1..10]
+user_renter = User.all[11..20]
 all_masks = Mask.all
+all_masks_uid = []
 # booked_mask = Mask.all.where("user_id: #{}")
 10.times do |i|
   reservation = Reservation.create!(
-    user_id: user_renter.sample,
-    mask_id: all_masks.include?(user_owner.mask_id),
+    user_id: user_renter.sample.id,
+    # mask_id: all_masks.include?(user_owner.mask_id),
+    # mask_id: all_masks.each do |key, value|
+    #   all_masks_uid << all_masks[key].user_id.to_i
+    # end
+    # ,
+    # mask_id: all_masks.each_key do |key|
+    #   all_masks_uid << all_masks[key].user_id.to_i
+    # end,
+    # mask_id: Mask.joins(:user).where({user: user_owner.sample}),
+    # mask_id: user_owner.sample.masks.sample.id,
+    mask_id: random_owner,
+
     start_time: Faker::Date.between(from: 15.days.ago, to: Date.today),
     end_time: Faker::Date.forward(days: 30),
     active: is_active.sample
   )
 end
+
+
 # create a REVIEWS seed
 #
 
