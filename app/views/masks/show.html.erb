@@ -8,6 +8,11 @@
   <% unless @mask.price.nil? %>
     <p>Price: <%= @mask.price % 1 == 0 ? @mask.price.truncate : @mask.price %>€</p>
   <% end %>
+
 </div>
 
 <%= link_to 'back', masks_path, class: 'btn btn-primary' %>
+
+<% if @mask.reservations.first.nil? %>
+  <%= link_to 'reserve', new_mask_reservation_path(@mask.id) %>
+<% end %>

@@ -37,18 +37,34 @@
 
 
 
-<div> <!-- Reservations container -->
+<div> <!-- Reservations container: mask renters -->
+
+<h5>Reservations:</h5>
+<% @reservations_renters.each do |reservation| %>
+  <% if reservation.reservation_status(reservation.start_time, reservation.end_time) != 'expired' %>
+    <%= link_to reservation.mask.description, reservation_path(reservation.id) %><br>
+    <%= reservation.mask.condition %><br>
+    <%= reservation.mask.size %><br>
+    <%= reservation.start_time %><br>
+    <%= reservation.end_time %><br>
+    <hr>
+  <% end %>
+<% end %>
 
 
+</div> <!-- /Reservations container: mask owners -->
 
 
-
-
-
-
-</div> <!-- /Reservations container -->
-
-
+<%= @reservations_owners.each do |reservation| %>
+  <% if reservation.reservation_status(reservation.start_time, reservation.end_time) != 'expired' %>
+    <%= link_to reservation.mask.description, reservation_path(reservation.id) %>
+    <%= reservation.mask.condition %>
+    <%= reservation.mask.size %>
+    <%= reservation.start_time %>
+    <%= reservation.end_time %>
+    <%= link_to reservation.mask.description, reservation_path(reservation.id) %>
+  <% end %>
+<% end %>
 
 
 

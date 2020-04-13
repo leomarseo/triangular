@@ -1,4 +1,5 @@
-<%= simple_form_for(reservation) do |f| %>
+<%= simple_form_for reservation, url: mask_reservations_path(@mask.id) do |f| %>
   <%= f.input :start_time %>
   <%= f.input :end_time %>
+  <%= f.submit %>
 <% end %>
