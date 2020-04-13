@@ -1,7 +1,21 @@
 class MasksController < ApplicationController
   def index
-    if params['mask'].present?
-      @masks = Mask.where(mask_params)
+    # if params[:query].present? # include? (:location, :start_time, :end_time)
+    #   sql_query = "
+    #     description ILIKE :query \
+    #     OR start_time ILIKE :query \
+    #     OR end_time ILIKE :query \
+    #   "
+    #   @masks = Mask.where(sql_query, query: "%#{params[:query]}%")
+    if params[:query].present?
+      @masks = Mask.where("description ILIKE ?", "%#{params[:query]}%")
+    # elsif params[:query].include? (:size, :condition, :price)
+    #   sql_query = "
+    #     masks.size @@ :query \
+    #     OR masks.condition @@ :query \
+    #     OR masks.price @@ :query \
+    #   "
+    #   @masks = Mask.where(sql_query, query: "%#{complex_mask_params}%")
     else
       @masks = Mask.all
     end
@@ -32,9 +46,13 @@ class MasksController < ApplicationController
     redirect_to pages_dashboard_path
   end
 
-  private
+  # private
 
-  def mask_params
-    params.require(:mask).permit(:description, :condition, :size, :start_time, :end_time, :price)
-  end
+  # def simple_mask_params
+  #   params.require(:mask).permit(:description, :start_time, :end_time)
+  # end
+
+  # def complex_mask_params
+  #   params.require(:mask).permit(:description, :condition, :size, :start_time, :end_time, :price)
+  # end
 end

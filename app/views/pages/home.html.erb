@@ -19,7 +19,7 @@
     </div>
 
     <div class="shadow p-3 mb-5 bg-white rounded sign-box" >
-      <form>
+      <!-- <form>
         <h2 class="text-center">Book your Mask</h2>
         <div class="form-row">
           <div class="form-group col-md-12">
@@ -36,11 +36,18 @@
             <label for="input-end" class="small-caps d-block text-center"><strong>End date</strong></label>
             <input type="text" class="form-control" id="input-end">
           </div>
-        </div>
+        </div> -->
         <div class="mx-auto my-0 text-center">
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Book now</button>
+          <%= form_tag masks_path, method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Find a mask"
+            %>
+            <%= submit_tag "Search", class: "btn btn-primary" %>
+          <% end %>
         </div>
-      </form>
+      <!-- </form> -->
     </div>
   </div> <!-- this close the div.row -->
 </div> <!-- this close the div.container -->
