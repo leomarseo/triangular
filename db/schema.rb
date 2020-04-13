@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_04_10_161905) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "deleted", default: false
+    t.boolean "deleted"
     t.date "start_time"
     t.date "end_time"
     t.float "price"
