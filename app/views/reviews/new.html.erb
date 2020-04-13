@@ -1,4 +1,8 @@
+<h3>Review for: <%= @review.reviewable %></h3>
 <%= simple_form_for(@review) do |f| %>
   <%= f.input :content %>
   <%= f.input :rating, collection: 0..1 %>
+  <%= f.hidden_field :reviewable_id, value: @review.reviewable_id %>
+  <%= f.hidden_field :reviewable_type, value: @review.reviewable_type %>
+  <%= f.button :submit %>
 <% end %>
