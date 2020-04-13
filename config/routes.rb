@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :reservations, only: %i[new create edit show update]
   end
   resources :reservations, only: %i[index show update]
-  resources :reviews
+
+  resources :reviews, only: %i[new create]
 end
