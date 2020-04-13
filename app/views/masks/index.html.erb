@@ -11,7 +11,7 @@
       <% return if mask.deleted %>
 
       <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="triangular/app/assets/images/borat_mask.jpg" alt="This is a mask">
+        <%=  image_tag("borat_mask.jpg", class: 'image-card-box') %>
         <div class="card-body">
           <h5 class="card-title name-font-size"><%= mask.name %></h5>
         </div>
