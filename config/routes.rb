@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   resources :masks, only: %i[index new create edit show update] do
     resources :reservations, only: %i[new create edit show update]
   end
-
+  resources :reservations, only: %i[index show update]
   resources :reviews
 end

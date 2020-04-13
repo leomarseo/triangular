@@ -1,6 +1,7 @@
 <h3><%= @user.first_name %> masks:</h3>
 <hr>
 
+<div><%= link_to 'add mask', new_mask_path, class: "btn btn-primary" %></div>
 
 <div> <!-- Masks container -->
   <% @user.masks.each do |mask| %>
