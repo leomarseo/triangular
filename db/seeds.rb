@@ -50,6 +50,21 @@ end
 # create a RESERVATIONS seed
 # create two separate groups of user: one for owners, another for renters
 # user.find / user.where
+# is_active = ['true', 'false']
+user_owner = User.all[0..49]
+user_renter = User.all[50..99]
+all_masks = Mask.all
+# booked_mask = Mask.all.where("user_id: #{}")
+200.times do |i|
+  reservation = Reservation.create!(
+    user_id: user_renter.sample,
+    mask_id: Mask.where("user_id = #{user_owner.id}"),
+    start_time: Faker::Date.between(from: 15.days.ago, to: Date.today),
+    end_time: Faker::Date.forward(days: 30),
+    # active: is_active.sample
+
+    )
+
 # create a REVIEWS seed
 #
 
