@@ -51,20 +51,35 @@ end
 # create two separate groups of user: one for owners, another for renters
 # user.find / user.where
 # is_active = ['true', 'false']
-user_owner = User.all[0..49]
-user_renter = User.all[50..99]
+def random_owner
+  Mask.all.sample.id
+end
+
+user_owner = User.all[1..10]
+user_renter = User.all[11..20]
 all_masks = Mask.all
+all_masks_uid = []
 # booked_mask = Mask.all.where("user_id: #{}")
-200.times do |i|
+10.times do |i|
   reservation = Reservation.create!(
-    user_id: user_renter.sample,
-    mask_id: Mask.where("user_id = #{user_owner.id}"),
+    user_id: user_renter.sample.id,
+    # mask_id: all_masks.include?(user_owner.mask_id),
+    # mask_id: all_masks.each do |key, value|
+    #   all_masks_uid << all_masks[key].user_id.to_i
+    # end
+    # ,
+    # mask_id: all_masks.each_key do |key|
+    #   all_masks_uid << all_masks[key].user_id.to_i
+    # end,
+    # mask_id: Mask.joins(:user).where({user: user_owner.sample}),
+    # mask_id: user_owner.sample.masks.sample.id,
+    mask_id: random_owner,
+
     start_time: Faker::Date.between(from: 15.days.ago, to: Date.today),
     end_time: Faker::Date.forward(days: 30),
-    # active: is_active.sample
-
-    )
-
+    active: is_active.sample
+  )
+end
 # create a REVIEWS seed
 #
 
