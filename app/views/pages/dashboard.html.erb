@@ -1,111 +1,136 @@
-<div><%= link_to 'add mask', new_mask_path, class: "btn btn-primary" %></div>
+<div class="landing-container">
 
-<div> <!-- Masks container -->
-  <h3><%= @user.first_name %> masks:</h3>
-  <% @user.masks.each do |mask| %>
+  <!-- The button to create a mask -->
+  <div><%= link_to 'add mask', new_mask_path, class: "btn btn-primary" %></div>
 
-    <div> <!-- Mask card -->
-      <p><strong><p><%= mask.name %></p></strong></p>
-      <p><%= mask.description %></p>
-      <p><%= mask.condition %></p>
-      <p><%= mask.size %></p>
-      <% if mask.start_time && mask.end_time %>
-
-        <div> <!-- Listing information -->
-
-          <h5>Listed</h5>
-          <p>from: <%= mask.start_time %></p>
-          <p>to: <%= mask.end_time %></p>
-          <p>price: <%= mask.price %></p>
-          <%= link_to 'edit listing', edit_mask_path(mask.id), class: "far fa-edit" %>
-
-        </div> <!-- /Listing information -->
-
-      <% else %>
-
-        <p>this mask is not yet on the market. List it now!</p>
-        <%= link_to 'add listing', edit_mask_path(mask.id), class: "fas fa-plus" %>
-      <% end %>
-    </div> <!-- /Mask card -->
-
-  <% end %>
-
-</div> <!-- /Masks container -->
-
-<div> <!-- RESERVATIONS CONTAINER -->
-
-  <div> <!-- Reservations(customer) container -->
-    <hr>
-    <h3><%= @user.first_name %> reservations as customer:</h3>
-    <% @user.reservations.each do |reservation| %>
-      <% if reservation.reservation_status(reservation.start_time, reservation.end_time) != 'expired' %>
-        <%= link_to reservation.mask.description, reservation_path(reservation.id) %><br>
-        <h5>mask: <%= reservation.mask.name %></h5>
-        <p>from: <%= reservation.start_time %></p>
-        <p>to: <%= reservation.end_time %></p>
-        <p>price: <%= reservation.mask.price %></p>
-        <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
-      <% end %>
-    <% end %>
-
-  </div> <!-- /Reservations(customer) container -->
-
-
-  <div> <!-- Reservations(owner) container -->
-    <hr>
-    <h3><%= @user.first_name %> reservations as owner:</h3>
-    <% @user.masks.each do |mask|
-        mask.reservations.each do |reservation| %>
-          <% if reservation.reservation_status(reservation.start_time, reservation.end_time) != 'expired' %>
-            <%= link_to reservation.mask.description, reservation_path(reservation.id) %>
-            <h5>mask: <%= reservation.mask.name %></h5>
-            <p>from: <%= reservation.start_time %></p>
-            <p>to: <%= reservation.end_time %></p>
-            <p>price: <%= reservation.mask.price %></p>
-            <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
-          <% end %>
-        <% end %>
-
-    <% end %>
-
-  </div> <!-- /Reservations(owner) container -->
-
-</div> <!-- /RESERVATIONS CONTAINER -->
-
-
-<div> <!-- REVIEWS CONTAINER -->
-  <div> <!-- Reviews(customer, so reviewable=reservation) container -->
-    <hr>
-    <h3><%= @user.first_name %> reviews as customer:</h3>
-    <% @user.reservations.each do |reservation| %>
-      <p>review for reservation <%= reservation.id %>:</p>
-      <% unless reservation.review.nil? %>
-        <%= reservation.review.content %>
-        <%= reservation.review.rating %>
-      <% end %>
-    <% end %>
+  <!-- The navbar to the main things of the user -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mini-nav">
+    <div class="collapse navbar-collapse " id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Your mask</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Reservations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Own masks</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
 
 
-
-
-  </div> <!-- /Reviews(customer, so reviewable=reservation) container -->
-
-
-  <div> <!-- Reviews(owner, so reviewable=mask) container -->
-    <hr>
-    <h3><%= @user.first_name %> reviews as owner:</h3>
+  <div> <!-- Masks container -->
+    <h3><%= @user.first_name %> masks:</h3>
     <% @user.masks.each do |mask| %>
-      <p>reviews for mask: <%= mask.name %></p>
-        <% mask.reviews.each do |review| %>
-          <%= review.content %>
-          <%= review.rating %>
+
+      <div> <!-- Mask card -->
+        <p><strong><p><%= mask.name %></p></strong></p>
+        <p><%= mask.description %></p>
+        <p><%= mask.condition %></p>
+        <p><%= mask.size %></p>
+        <% if mask.start_time && mask.end_time %>
+
+          <div> <!-- Listing information -->
+
+            <h5>Listed</h5>
+            <p>from: <%= mask.start_time %></p>
+            <p>to: <%= mask.end_time %></p>
+            <p>price: <%= mask.price %></p>
+            <%= link_to 'edit listing', edit_mask_path(mask.id), class: "far fa-edit" %>
+
+          </div> <!-- /Listing information -->
+
+        <% else %>
+
+          <p>this mask is not yet on the market. List it now!</p>
+          <%= link_to 'add listing', edit_mask_path(mask.id), class: "fas fa-plus" %>
         <% end %>
+      </div> <!-- /Mask card -->
+
     <% end %>
 
+  </div> <!-- /Masks container -->
+
+  <div> <!-- RESERVATIONS CONTAINER -->
+
+    <div> <!-- Reservations(customer) container -->
+      <hr>
+      <h3><%= @user.first_name %> reservations as customer:</h3>
+      <% @user.reservations.each do |reservation| %>
+        <% if reservation.reservation_status(reservation.start_time, reservation.end_time) != 'expired' %>
+          <%= link_to reservation.mask.description, reservation_path(reservation.id) %><br>
+          <h5>mask: <%= reservation.mask.name %></h5>
+          <p>from: <%= reservation.start_time %></p>
+          <p>to: <%= reservation.end_time %></p>
+          <p>price: <%= reservation.mask.price %></p>
+          <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
+        <% end %>
+      <% end %>
+
+    </div> <!-- /Reservations(customer) container -->
+
+
+    <div> <!-- Reservations(owner) container -->
+      <hr>
+      <h3><%= @user.first_name %> reservations as owner:</h3>
+      <% @user.masks.each do |mask|
+          mask.reservations.each do |reservation| %>
+            <% if reservation.reservation_status(reservation.start_time, reservation.end_time) != 'expired' %>
+              <%= link_to reservation.mask.description, reservation_path(reservation.id) %>
+              <h5>mask: <%= reservation.mask.name %></h5>
+              <p>from: <%= reservation.start_time %></p>
+              <p>to: <%= reservation.end_time %></p>
+              <p>price: <%= reservation.mask.price %></p>
+              <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
+
+      <% end %>
+
+    </div> <!-- /Reservations(owner) container -->
+
+  </div> <!-- /RESERVATIONS CONTAINER -->
+
+
+  <div> <!-- REVIEWS CONTAINER -->
+    <div> <!-- Reviews(customer, so reviewable=reservation) container -->
+      <hr>
+      <h3><%= @user.first_name %> reviews as customer:</h3>
+      <% @user.reservations.each do |reservation| %>
+        <p>review for reservation <%= reservation.id %>:</p>
+        <% unless reservation.review.nil? %>
+          <%= reservation.review.content %>
+          <%= reservation.review.rating %>
+        <% end %>
+      <% end %>
 
 
 
-  </div> <!-- /Reviews(owner, so reviewable=mask) container -->
 
-</div> <!-- /REVIEWS CONTAINER -->
+
+    </div> <!-- /Reviews(customer, so reviewable=reservation) container -->
+
+
+    <div> <!-- Reviews(owner, so reviewable=mask) container -->
+      <hr>
+      <h3><%= @user.first_name %> reviews as owner:</h3>
+      <% @user.masks.each do |mask| %>
+        <p>reviews for mask: <%= mask.name %></p>
+          <% mask.reviews.each do |review| %>
+            <%= review.content %>
+            <%= review.rating %>
+          <% end %>
+      <% end %>
+
+
+
+
+    </div> <!-- /Reviews(owner, so reviewable=mask) container -->
+
+  </div> <!-- /REVIEWS CONTAINER -->
+</div>
+
+
