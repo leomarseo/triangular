@@ -20,6 +20,8 @@ class MasksController < ApplicationController
 
   def show
     @mask = Mask.find(params[:id])
+    @reviews = Review.all
+    @reservation = Reservation.new
   end
 
   def edit
@@ -35,6 +37,6 @@ class MasksController < ApplicationController
   private
 
   def mask_params
-    params.require(:mask).permit(:description, :condition, :size, :start_time, :end_time, :price)
+    params.require(:mask).permit(:name, :description, :condition, :size, :start_time, :end_time, :price)
   end
 end
