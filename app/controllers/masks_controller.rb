@@ -8,7 +8,8 @@ class MasksController < ApplicationController
     #   "
     #   @masks = Mask.where(sql_query, query: "%#{params[:query]}%")
     if params[:query].present?
-      @masks = Mask.where("description ILIKE ?", "%#{params[:query]}%")
+      sql_query = "CAST(start_time AS text) ILIKE :query OR CAST(end_time AS text) ILIKE :query"
+      @masks = Mask.where(sql_query, query: "%#{params[:query]}%")
     # elsif params[:query].include? (:size, :condition, :price)
     #   sql_query = "
     #     masks.size @@ :query \
@@ -52,7 +53,7 @@ class MasksController < ApplicationController
   #   params.require(:mask).permit(:description, :start_time, :end_time)
   # end
 
-  # def complex_mask_params
-  #   params.require(:mask).permit(:description, :condition, :size, :start_time, :end_time, :price)
-  # end
+  def mask_params
+    params.require(:mask).permit(:description, :condition, :size, :start_time, :end_time, :price)
+  end
 end

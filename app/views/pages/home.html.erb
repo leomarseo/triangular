@@ -38,13 +38,12 @@
           </div>
         </div> -->
         <div class="mx-auto my-0 text-center">
-          <%= form_tag masks_path, method: :get do %>
-            <%= text_field_tag :query,
-              params[:query],
-              class: "form-control",
-              placeholder: "Find a mask"
-            %>
-            <%= submit_tag "Search", class: "btn btn-primary" %>
+          <%= simple_form_for :search, url: masks_path, method: "GET", html: { class: 'form-inline' } do |f| %>
+            <%= f.input :start_time, :as :date } %>
+            <br>
+            <%= f.input :end_time, :as :date } %>
+            <br>
+            <%= f.submit "Search", class: "btn btn-primary" %>
           <% end %>
         </div>
       <!-- </form> -->
