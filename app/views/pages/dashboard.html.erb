@@ -41,7 +41,7 @@
     <p>from: <%= reservation.start_time %></p>
     <p>to: <%= reservation.end_time %></p>
     <p>price: <%= reservation.mask.price %></p>
-    <%= link_to 'add review', new_review_path, class: 'btn btn-primary' %>
+    <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
   <% end %>
 
 
