@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 2020_04_13_141106) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "deleted"
-    t.boolean "confirmed"
+    t.boolean "deleted", default: false
+    t.boolean "confirmed", default: false
     t.index ["mask_id"], name: "index_reservations_on_mask_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end

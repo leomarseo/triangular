@@ -3,7 +3,7 @@ require 'date'
 class Reservation < ApplicationRecord
   belongs_to :mask
   belongs_to :user
-  has_many :reviews, as: :reviewable
+  has_one :review, as: :reviewable
   validates_presence_of :mask, :user, :start_time, :end_time
   validates :confirmed, default: false
 
