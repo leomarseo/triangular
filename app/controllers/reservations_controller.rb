@@ -22,11 +22,13 @@ class ReservationsController < ApplicationController
     redirect_to pages_dashboard_path
   end
 
-  def edit
-
+  def update
   end
 
-  def update
+  def confirm
+    @reservation = Reservation.find(params[:id])
+    @reservation.update(confirmed: true)
+    redirect_to pages_dashboard_path
   end
 
   private

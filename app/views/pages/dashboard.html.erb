@@ -66,7 +66,10 @@
           <% reservation_status = reservation.confirmed ? "confirmed" : "pending" %>
           <p>status: <%= reservation_status %></p>
           <%= link_to 'add review', new_review_path, class: 'btn btn-primary' %>
-
+          <% if reservation.confirmed != true %>
+            <!-- TODO: next line should direct to an update route that has to be defined within the reservation controller -->
+            <%= button_to 'confirm reservation', confirm_reservation_path(mask_id: mask.id, id: reservation.id) %>
+          <% end %>
         <% end %>
       <% end %>
 
