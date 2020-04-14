@@ -1,57 +1,36 @@
-<br>
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link" href="reservations">Reservations</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link active" href="masks">Listings</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="reviews">Reviews</a>
-  </li>
-</ul>
-<br>
+<div class="main-container">
+  <div class="title-add-btn">
+    <h2>My linstings</h2>
+    <%= link_to 'New listing', new_mask_path %>
+  </div>
 
-<div><%= link_to 'add mask', new_mask_path, class: "btn btn-primary" %></div>
 
-<h3><%= @user.first_name %> masks:</h3>
-<div class="masks-container row"> <!-- Masks container -->
-  <% @user.masks.each do |mask| %>
-    <% unless mask.deleted %>
-      <div class="masks-cards col-12"> <!-- Mask card -->
-        <div class="mask-photo">
-          <% if mask.photo.attached? %>
-            <%= cl_image_tag mask.photo.key, :width=>200, :height=>200, crop: :fill %>
-          <% else %>
-            <%=  image_tag("borat_mask.jpg", class: 'image-card-box') %>
-          <% end %>
-        </div>
-        <div class="mask-overview">
-          <%= link_to '', mask_path(mask.id), method: :delete, class: "fas fa-trash" %>
-          <p><strong><p><%= mask.name %></p></strong></p>
-          <p><%= mask.description %></p>
-          <p><%= mask.condition %></p>
-          <p><%= mask.size %></p>
-          <% if mask.start_time && mask.end_time %>
+  <div class="listing-container">
+    <% @user.masks.each do |mask| %>
+      <% unless mask.deleted %>
+          <div class="listing-card">
+            <!-- left -->
+            <div class="listing-img">
+              <% if mask.photo.attached? %>
+                <%= cl_image_tag mask.photo.key, :width=>200, :height=>200, crop: :fill %>
+              <% else %>
+                <%=  image_tag("borat_mask.jpg", class: 'image-card-box') %>
+              <% end %>
+            </div>
+            <!-- right -->
+            <div class="linsting-info">
+              <div class="name-description">
+                <p><strong><%= mask.name %></strong></p>
+                <p><%= mask.description %></p>
 
-            <div> <!-- Listing information -->
-
-              <h5>Listed</h5>
-              <p>from: <%= mask.start_time %></p>
-              <p>to: <%= mask.end_time %></p>
-              <p>price: <%= mask.price %></p>
-              <%= link_to 'edit listing', edit_mask_path(mask.id), class: "far fa-edit" %>
-
-            </div> <!-- /Listing information -->
-
-          <% else %>
-
-            <p>this mask is not yet on the market. List it now!</p>
-            <%= link_to 'add listing', edit_mask_path(mask.id), class: "fas fa-plus" %>
-          <% end %>
-        </div>
-      </div> <!-- /Mask card -->
+              </div>
+              <div class="condition-size">
+                <p><%= mask.condition %></p>
+                <p><%= mask.size %></p>
+              </div>
+            </div>
+          </div>
+      <% end %>
     <% end %>
-  <% end %>
-
-</div> <!-- /Masks container -->
+  </div>
+</div>
