@@ -11,8 +11,10 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.create(review_params)
-    redirect_to pages_dashboard_path
+    @review = Review.new(review_params)
+    @review.user = current_user
+    @review.save
+    redirect_to pages_reviews_path
   end
 
   private
