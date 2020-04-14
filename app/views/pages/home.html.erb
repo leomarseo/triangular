@@ -18,6 +18,25 @@
     </div>
 
     <div class="shadow p-3 mb-5 bg-white rounded sign-box" >
+        <%= simple_form_for :search, method: :get do |f| %>
+          <div class="form-inputs" >
+            <%= f.input :location %>
+            <%= f.input :start_time, as: :string, input_html: { id: "start_time" } %>
+            <%= f.input :end_time, as: :string, input_html: { id: "end_time" } %>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, "Book Now", input_html: { class: "btn btn-primary btn-lg btn-block" } %>
+          </div>
+        <% end %>
+
+      </div>
+
+    </div> <!-- this close the div.row -->
+</div> <!-- this close the div.container -->
+
+
+<!--
+    <div class="shadow p-3 mb-5 bg-white rounded sign-box" >
       <form>
         <h2 class="text-center">Book your Mask</h2>
         <div class="form-row">
@@ -41,8 +60,8 @@
         </div>
       </form>
     </div>
-  </div> <!-- this close the div.row -->
-</div> <!-- this close the div.container -->
+  </div>  this close the div.row
+</div> this close the div.container -->
 
 
 
