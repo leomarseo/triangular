@@ -34,6 +34,12 @@ class MasksController < ApplicationController
     redirect_to pages_masks_path
   end
 
+  def destroy
+    @mask = Mask.find(params[:id])
+    @mask.update(deleted: true)
+    redirect_to pages_masks_path
+  end
+
   private
 
   def mask_params
