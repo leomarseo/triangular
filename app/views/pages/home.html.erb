@@ -37,12 +37,28 @@
           </div>
         </div> -->
         <div class="mx-auto my-0 text-center">
-          <%= simple_form_for :search, url: masks_path, method: "GET", html: { class: 'form-inline' } do |f| %>
-            <%= f.input :start_time, :as :date } %>
+          <%= form_tag masks_path, method: :get do %>
+            <%= text_field_tag :location,
+              params[:address],
+              class: "form-control",
+              placeholder: "Location"
+            %>
             <br>
-            <%= f.input :end_time, :as :date } %>
+            <%= text_field_tag :start_time,
+              params[:start_time],
+              class: "form-control",
+              input_type: "date",
+              placeholder: "Start date"
+            %>
             <br>
-            <%= f.submit "Search", class: "btn btn-primary" %>
+            <%= text_field_tag :end_time,
+              params[:end_time],
+              class: "form-control",
+              input_type: "date",
+              placeholder: "End date"
+            %>
+            <br>
+            <%= submit_tag "Search", class: "btn btn-primary" %>
           <% end %>
         </div>
       <!-- </form> -->

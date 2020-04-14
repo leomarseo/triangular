@@ -7,9 +7,15 @@ class MasksController < ApplicationController
     #     OR end_time ILIKE :query \
     #   "
     #   @masks = Mask.where(sql_query, query: "%#{params[:query]}%")
-    if params[:query].present?
-      sql_query = "CAST(start_time AS text) ILIKE :query OR CAST(end_time AS text) ILIKE :query"
-      @masks = Mask.where(sql_query, query: "%#{params[:query]}%")
+    if params[:location].present? || params[:start_time].present? || params[:end_time].present?
+      sql_query = " \
+        users.address @@ :query \
+        OR CAST(masks.start_time AS text) @@ :query \
+        OR CAST(masks.end_time AS text) @@ :query \
+        "
+        # raise
+        search = params[:location] + " " + params[:start_time] + " " + params[:end_time]
+      @masks = Mask.joins(:user).where(sql_query, query: "%#{search}%")
     # elsif params[:query].include? (:size, :condition, :price)
     #   sql_query = "
     #     masks.size @@ :query \
@@ -29,6 +35,7 @@ class MasksController < ApplicationController
   def create
     mask = Mask.new(mask_params)
     mask.user = current_user
+    mask.user.address = current_user.address
     mask.save
     redirect_to pages_dashboard_path
   end
@@ -49,7 +56,7 @@ class MasksController < ApplicationController
     redirect_to pages_dashboard_path
   end
 
-  # private
+  private
 
   # def simple_mask_params
   #   params.require(:mask).permit(:description, :start_time, :end_time)

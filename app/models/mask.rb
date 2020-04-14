@@ -7,6 +7,15 @@ class Mask < ApplicationRecord
   validates :condition, presence: true
   validates :size, presence: true, inclusion: { in: %w[Child Adult Hagrid] }
 
+  # include PgSearch::Model
+  # pg_search_scope :global_search,
+  #   against: [:start_time, :end_time],
+  #   associated_against: {
+  #     user: [:address]
+  #   },
+  #   using: {
+  #     tsearch: { prefix: true }
+  #   }
   def rating
     return false if reviews.count.zero?
 
