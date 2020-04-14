@@ -90,8 +90,10 @@ end
   reviews = Review.create!(
     content: Faker::Books::Lovecraft.paragraph,
     rating: [0, 1].sample,
-    reviewable_id: Mask.all.sample.id
-    )
+    # reviewable_type: "Mask",
+    # reviewable_id: Mask.all.sample.id
+    reviewable: Mask.all.sample
+  )
 end
   puts "Created #{Review.all.count} reviews!"
 
