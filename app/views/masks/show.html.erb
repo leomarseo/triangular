@@ -12,6 +12,11 @@
     </div>
     <div class="mask-info">
       <h2><strong><%= @mask.name %></strong></h2><hr>
+      <% if @mask.rating %> <!-- rating shows only if present (method returns false if there's not reviews)-->
+        <div class="card-body">
+          <h5 class="card-title name-font-size">Rating: <%= @mask.rating %>%</h5>
+        </div>
+      <% end %>
       <p><%= @mask.description %></p>
       <p>Condition: <%= @mask.condition %></p>
       <p>Size: <%= @mask.size %></p>
@@ -36,11 +41,19 @@
 
   <div class="all-rev-box">
     <h3>Reviews</h3>
-      <div class="rev-box">
-        <p><%=  image_tag("em.jpg", class: 'avatar') %>
-            Elon Musk</p>
-        <p>"This is a very nice Musk...ehm...mask"</p>
-      </div>
+      <% if @mask.reviews.count.zero? %>
+        <div class="rev-box">
+          <p>There's not reviews yet for this mask..</p>
+        </div>
+      <% else %>
+        <% @mask.reviews.each do |review| %>
+          <div class="rev-box">
+            <p><%=  image_tag("em.jpg", class: 'avatar') %>
+                <%= review.user.first_name + review.user.last_name %></p>
+            <p><%= review.content %></p>
+          </div>
+        <% end %>
+      <% end %>
   </div>
 
 

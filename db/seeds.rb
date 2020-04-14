@@ -91,7 +91,8 @@ end
     rating: [0, 1].sample,
     # reviewable_type: "Mask",
     # reviewable_id: Mask.all.sample.id
-    reviewable: Mask.all.sample
+    reviewable: Mask.all.sample,
+    user_id: User.all.sample.id
   )
 end
 
@@ -101,7 +102,8 @@ end
     rating: [0, 1].sample,
     # reviewable_type: "Mask",
     # reviewable_id: Mask.all.sample.id
-    reviewable: Reservation.all.sample
+    reviewable: Reservation.all.sample,
+    user_id: User.all.sample.id
   )
 end
   puts "Created #{Review.all.count} reviews!"
