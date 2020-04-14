@@ -24,6 +24,8 @@
         <p>from: <%= reservation.start_time %></p>
         <p>to: <%= reservation.end_time %></p>
         <p>price: <%= reservation.mask.price %></p>
+        <% reservation_status = reservation.confirmed ? "confirmed" : "pending" %>
+        <p>status: <%= reservation_status %></p>
         <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
       <% end %>
     <% end %>
@@ -42,6 +44,12 @@
             <p>from: <%= reservation.start_time %></p>
             <p>to: <%= reservation.end_time %></p>
             <p>price: <%= reservation.mask.price %></p>
+            <% reservation_status = reservation.confirmed ? "confirmed" : "pending" %>
+            <p>status: <%= reservation_status %></p>
+            <% if reservation.confirmed != true %>
+              <!-- TODO: next line should direct to an update route that has to be defined within the reservation controller -->
+              <%= button_to 'confirm reservation', confirm_reservation_path(mask_id: mask.id, id: reservation.id) %>
+            <% end %>
             <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
           <% end %>
         <% end %>

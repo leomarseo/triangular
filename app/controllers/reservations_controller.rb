@@ -19,7 +19,7 @@ class ReservationsController < ApplicationController
     @reservation.user = current_user
     @reservation.mask_id = params[:mask_id]
     @reservation.save
-    redirect_to pages_dashboard_path
+    redirect_to pages_reservations_path
   end
 
   def update
@@ -28,7 +28,7 @@ class ReservationsController < ApplicationController
   def confirm
     @reservation = Reservation.find(params[:id])
     @reservation.update(confirmed: true)
-    redirect_to pages_dashboard_path
+    redirect_to pages_reservations_path
   end
 
   private

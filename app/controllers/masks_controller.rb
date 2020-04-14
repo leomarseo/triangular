@@ -15,7 +15,7 @@ class MasksController < ApplicationController
     mask = Mask.new(mask_params)
     mask.user = current_user
     mask.save
-    redirect_to pages_dashboard_path
+    redirect_to pages_listings_path
   end
 
   def show
@@ -31,7 +31,7 @@ class MasksController < ApplicationController
   def update
     @mask = Mask.find(params[:id])
     @mask.update(mask_params)
-    redirect_to pages_dashboard_path
+    redirect_to pages_listings_path
   end
 
   private
