@@ -19,6 +19,11 @@
   <% @user.masks.each do |mask| %>
     <div class="masks-cards col-12"> <!-- Mask card -->
       <div class="mask-photo">
+        <% if mask.photo.attached? %>
+          <%= cl_image_tag mask.photo.key, :width=>200, :height=>200, crop: :fill %>
+        <% else %>
+          <%=  image_tag("borat_mask.jpg", class: 'image-card-box') %>
+        <% end %>
       </div>
       <div class="mask-overview">
         <p><strong><p><%= mask.name %></p></strong></p>

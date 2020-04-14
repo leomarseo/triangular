@@ -5,6 +5,7 @@ class Mask < ApplicationRecord
   validates :description, presence: true
   validates :condition, presence: true
   validates :size, presence: true, inclusion: { in: %w[Child Adult Hagrid] }
+  has_one_attached :photo
 
   def rating
     return false if reviews.count.zero?
