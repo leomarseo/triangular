@@ -57,7 +57,6 @@ def random_owner
   Mask.all.sample.id
 end
 
-user_owner = User.all[1..10]
 user_renter = User.all[11..20]
 all_masks = Mask.all
 all_masks_uid = []
@@ -77,8 +76,8 @@ all_masks_uid = []
     # mask_id: user_owner.sample.masks.sample.id,
     mask_id: random_owner,
     start_time: Faker::Date.between(from: 15.days.ago, to: Date.today),
-    end_time: Faker::Date.forward(days: 30)
-    # active: is_active.sample
+    end_time: Faker::Date.forward(days: 30),
+    confirmed: [true, true, false].sample
   )
 end
   puts "Created #{Reservation.all.count} reservations!"
