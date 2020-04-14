@@ -1,3 +1,18 @@
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" href="reservations">Reservations</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="masks">Listings</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="reviews">Reviews</a>
+  </li>
+</ul>
+
 <div><%= link_to 'add mask', new_mask_path, class: "btn btn-primary" %></div>
 
 <div> <!-- Masks container -->
@@ -32,11 +47,11 @@
 
 </div> <!-- /Masks container -->
 
-<div> <!-- RESERVATIONS CONTAINER -->
+</div> <!-- /RESERVATIONS CONTAINER -->
 
   <div> <!-- Reservations(customer) container -->
-    <hr>
     <h3><%= @user.first_name %> reservations as customer:</h3>
+    <hr>
     <% @user.reservations.each do |reservation| %>
       <% if reservation.reservation_status(reservation.start_time, reservation.end_time) != 'expired' %>
         <%= link_to reservation.mask.description, reservation_path(reservation.id) %><br>
@@ -44,16 +59,19 @@
         <p>from: <%= reservation.start_time %></p>
         <p>to: <%= reservation.end_time %></p>
         <p>price: <%= reservation.mask.price %></p>
-        <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
+        <% reservation_status = reservation.confirmed ? "confirmed" : "pending" %>
+        <p>status: <%= reservation_status %></p>
+        <%= link_to 'add review', new_review_path, class: 'btn btn-primary' %>
       <% end %>
     <% end %>
+
 
   </div> <!-- /Reservations(customer) container -->
 
 
   <div> <!-- Reservations(owner) container -->
-    <hr>
     <h3><%= @user.first_name %> reservations as owner:</h3>
+    <hr>
     <% @user.masks.each do |mask|
         mask.reservations.each do |reservation| %>
           <% if reservation.reservation_status(reservation.start_time, reservation.end_time) != 'expired' %>
@@ -62,10 +80,16 @@
             <p>from: <%= reservation.start_time %></p>
             <p>to: <%= reservation.end_time %></p>
             <p>price: <%= reservation.mask.price %></p>
-            <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
+            <% reservation_status = reservation.confirmed ? "confirmed" : "pending" %>
+            <p>status: <%= reservation_status %></p>
+            <%= link_to 'add review', new_review_path, class: 'btn btn-primary' %>
+            <% if reservation.confirmed != true %>
+              <!-- TODO: next line should direct to an update route that has to be defined within the reservation controller -->
+              <%= button_to 'confirm reservation', confirm_reservation_path(mask_id: mask.id, id: reservation.id) %>
+            <% end %>
           <% end %>
-        <% end %>
 
+      <% end %>
     <% end %>
 
   </div> <!-- /Reservations(owner) container -->
@@ -109,3 +133,4 @@
   </div> <!-- /Reviews(owner, so reviewable=mask) container -->
 
 </div> <!-- /REVIEWS CONTAINER -->
+
