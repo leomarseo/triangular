@@ -15,4 +15,7 @@
 @import "pages/index";
 
 // Import general CSS
-@import "pages"
+@import "pages";
+
+// Import Plugins
+@import "flatpickr/dist/flatpickr";
