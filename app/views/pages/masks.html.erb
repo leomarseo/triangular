@@ -1,3 +1,4 @@
+<br>
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <a class="nav-link active" href="masks">Listings</a>
@@ -9,35 +10,39 @@
     <a class="nav-link" href="reviews">Reviews</a>
   </li>
 </ul>
+<br>
 
 <div><%= link_to 'add mask', new_mask_path, class: "btn btn-primary" %></div>
 
-<div> <!-- Masks container -->
-  <h3><%= @user.first_name %> masks:</h3>
+<h3><%= @user.first_name %> masks:</h3>
+<div class="masks-container row"> <!-- Masks container -->
   <% @user.masks.each do |mask| %>
+    <div class="masks-cards col-12"> <!-- Mask card -->
+      <div class="mask-photo">
+      </div>
+      <div class="mask-overview">
+        <p><strong><p><%= mask.name %></p></strong></p>
+        <p><%= mask.description %></p>
+        <p><%= mask.condition %></p>
+        <p><%= mask.size %></p>
+        <% if mask.start_time && mask.end_time %>
 
-    <div> <!-- Mask card -->
-      <p><strong><p><%= mask.name %></p></strong></p>
-      <p><%= mask.description %></p>
-      <p><%= mask.condition %></p>
-      <p><%= mask.size %></p>
-      <% if mask.start_time && mask.end_time %>
+          <div> <!-- Listing information -->
 
-        <div> <!-- Listing information -->
+            <h5>Listed</h5>
+            <p>from: <%= mask.start_time %></p>
+            <p>to: <%= mask.end_time %></p>
+            <p>price: <%= mask.price %></p>
+            <%= link_to 'edit listing', edit_mask_path(mask.id), class: "far fa-edit" %>
 
-          <h5>Listed</h5>
-          <p>from: <%= mask.start_time %></p>
-          <p>to: <%= mask.end_time %></p>
-          <p>price: <%= mask.price %></p>
-          <%= link_to 'edit listing', edit_mask_path(mask.id), class: "far fa-edit" %>
+          </div> <!-- /Listing information -->
 
-        </div> <!-- /Listing information -->
+        <% else %>
 
-      <% else %>
-
-        <p>this mask is not yet on the market. List it now!</p>
-        <%= link_to 'add listing', edit_mask_path(mask.id), class: "fas fa-plus" %>
-      <% end %>
+          <p>this mask is not yet on the market. List it now!</p>
+          <%= link_to 'add listing', edit_mask_path(mask.id), class: "fas fa-plus" %>
+        <% end %>
+      </div>
     </div> <!-- /Mask card -->
 
   <% end %>
