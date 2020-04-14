@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div>
 
   <p>Description: <%= @mask.description %></p>
@@ -11,3 +12,70 @@
 </div>
 
 <%= link_to 'Back', masks_path, class: 'btn btn-primary' %>
+=======
+<div class="landing-container">
+  <div class="back-to-masks">
+    <%= link_to '< Back to the search', masks_path, class: "to-masks" %>
+  </div>
+  <div class="row justify-content-around mb-5">
+    <div class="mask-img">
+      <%=  image_tag("borat_mask.jpg", class: 'image-card-box') %>
+    </div>
+    <div class="mask-info">
+      <h2><strong><%= @mask.name %></strong></h2><hr>
+      <p><%= @mask.description %></p>
+      <p>Condition: <%= @mask.condition %></p>
+      <p>Size: <%= @mask.size %></p>
+      <p>Price: <strong><% unless @mask.price.nil? %>
+        <%= @mask.price % 1 == 0 ? @mask.price.truncate : @mask.price %>
+      <% end %>
+      €/day</strong></p>
+      <p>Offered by: <%=  image_tag("logo.png", class: 'avatar') %>
+        <%= @mask.user.first_name %></p>
+    </div>
+    <div class="shadow p-3 mb-5 bg-white rounded book-box">
+      <h2 class="text-center mb-3">Book this Mask</h2>
+      <%= simple_form_for @reservation, url: mask_reservations_path(@mask.id) do |f| %>
+      <%= f.input :start_time %>
+      <%= f.input :end_time %>
+      <%= f.submit %>
+      <% end %>
+    </div>
+  </div> <!-- end of div.row -->
+
+<!--   Here start the reviews -->
+
+  <div class="all-rev-box">
+    <h3>Reviews</h3>
+      <div class="rev-box">
+        <p><%=  image_tag("em.jpg", class: 'avatar') %>
+            Elon Musk</p>
+        <p>"This is a very nice Musk...ehm...mask"</p>
+      </div>
+  </div>
+
+
+</div> <!-- end of div.landing-container -->
+
+
+<!-- ********************************************************************************************************* -->
+    <!--   <form>
+        <h2 class="text-center">Book this Mask</h2>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="input-place" class="small-caps d-block text-center"><strong>Start date</strong></label>
+            <input type="text" class="form-control" id="input-place">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="input-place" class="small-caps d-block text-center"><strong>End date</strong></label>
+            <input type="text" class="form-control" id="input-place">
+          </div>
+        </div>
+        <div class="mx-auto my-0 text-center">
+          <button type="submit" class="btn btn-primary btn-block">Book now</button>
+        </div>
+      </form>
+    </div> -->
+>>>>>>> master
