@@ -9,7 +9,7 @@
 # create a USERS seed
 #
 puts 'Creating some users...'
-5.times do |i|
+10.times do |i|
   user = User.create!(
     first_name: Faker::Games::Dota.hero,
     last_name: Faker::Games::HeroesOfTheStorm.hero,
@@ -19,7 +19,7 @@ puts 'Creating some users...'
   )
   puts "#{i + 1}. #{user.first_name} #{user.last_name}"
 end
-5.times do |i|
+10.times do |i|
   user = User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -34,18 +34,20 @@ end
 # users = User.all
 array_size = ['Child', 'Adult', 'Hagrid']
 condition = ['used', 'new']
-15.times do |i|
+30.times do |i|
   mask = Mask.create!(
     name: Faker::DcComics.name,
     user: User.all.sample,
     description: Faker::Books::Dune.saying,
     condition: condition.sample,
-    size: array_size.sample
+    size: array_size.sample,
+    start_time: Faker::Date.between(from: 15.days.ago, to: Date.today),
+    end_time: Faker::Date.forward(days: 30)
     # email: Faker::Internet.email,
     # password: Faker::Internet.password
   )
-  # puts "#{i + 1}. #{user.first_name} #{user.last_name}"
 end
+  puts "Created #{Mask.all.count} masks!"
 
 # create a RESERVATIONS seed
 # create two separate groups of user: one for owners, another for renters
@@ -74,13 +76,25 @@ all_masks_uid = []
     # mask_id: Mask.joins(:user).where({user: user_owner.sample}),
     # mask_id: user_owner.sample.masks.sample.id,
     mask_id: random_owner,
-
     start_time: Faker::Date.between(from: 15.days.ago, to: Date.today),
-    end_time: Faker::Date.forward(days: 30),
-    active: is_active.sample
+    end_time: Faker::Date.forward(days: 30)
+    # active: is_active.sample
   )
 end
+  puts "Created #{Reservation.all.count} reservations!"
 # create a REVIEWS seed
 #
+# Review.create(content: "test", rating: 1, reviewable_id: Mask.all.sample.id)
 
+20.times do |i|
+  reviews = Review.create!(
+    content: Faker::Books::Lovecraft.paragraph,
+    rating: [0, 1].sample,
+    reviewable_id: Mask.all.sample.id
+    )
+end
+  puts "Created #{Review.all.count} reviews!"
+
+# something here
 puts 'Finished!'
+# to-do: add a put after each seeds is completed
