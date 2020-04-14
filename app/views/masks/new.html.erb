@@ -8,8 +8,8 @@
       <%= f.input :condition %>
       <%= f.input :size, collection: %w[Child Adult Hagrid] %>
       <%= f.input :photo, as: :file %>
-      <%= f.input :start_time, include_blank: true %>
-      <%= f.input :end_time, include_blank: true %>
+      <%= f.input :start_time, as: :string, input_html: { id: "start_time" } %>
+      <%= f.input :end_time, as: :string, input_html: { id: "end_time" } %>
       <%= f.input :price, include_blank: true %>
     </div>
 
