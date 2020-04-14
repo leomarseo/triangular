@@ -49,7 +49,7 @@
         <% @mask.reviews.each do |review| %>
           <div class="rev-box">
             <p><%=  image_tag("em.jpg", class: 'avatar') %>
-                <%= review.user.first_name + review.user.last_name %></p>
+                <%= review.user.first_name + ' ' + review.user.last_name %></p>
             <p><%= review.content %></p>
           </div>
         <% end %>

@@ -8,7 +8,7 @@
 
   <div class="cards-in-row centered-box">
     <% @masks.each do |mask| %>
-      <% return if mask.deleted %>
+      <% next if mask.deleted %>
 
       <div class="card" style="width: 18rem;">
         <% if mask.photo.attached? %> <!-- image is take from cloudinary only if attached, otherwise default boris -->
