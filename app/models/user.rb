@@ -7,6 +7,13 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :address, presence: true
   validates :email, presence: true, uniqueness: true, format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i }
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+
+  # You can find an object and update it with a one command
+  # using update as class method.
+  #
+  # User.update(111, address: '16 Villa Gaudelet, Paris')
 
   def rating_as_owner
     return false unless masks.any?
