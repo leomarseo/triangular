@@ -95,6 +95,16 @@ end
     reviewable: Mask.all.sample
   )
 end
+
+20.times do |i|
+  reviews = Review.create!(
+    content: Faker::Books::Lovecraft.paragraph,
+    rating: [0, 1].sample,
+    # reviewable_type: "Mask",
+    # reviewable_id: Mask.all.sample.id
+    reviewable: Reservation.all.sample
+  )
+end
   puts "Created #{Review.all.count} reviews!"
 
 # something here
