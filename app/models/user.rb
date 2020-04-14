@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :address, presence: true
   validates :email, presence: true, uniqueness: true, format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i }
+  has_many :reviews
 
   def rating_as_owner
     return false unless masks.any?
