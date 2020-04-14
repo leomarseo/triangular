@@ -8,13 +8,22 @@
 
   <div class="cards-in-row centered-box">
     <% @masks.each do |mask| %>
-      <% return if mask.deleted %>
+      <% next if mask.deleted %>
 
       <div class="card" style="width: 18rem;">
-        <%=  image_tag("borat_mask.jpg", class: 'image-card-box') %>
+        <% if mask.photo.attached? %> <!-- image is take from cloudinary only if attached, otherwise default boris -->
+          <%= cl_image_tag mask.photo.key, crop: :fill, class: 'image-card-box' %>
+        <% else %>
+          <%=  image_tag("borat_mask.jpg", class: 'image-card-box') %>
+        <% end %>
         <div class="card-body">
           <h5 class="card-title name-font-size"><%= mask.name %></h5>
         </div>
+        <% if mask.rating %> <!-- rating shows only if present (method returns false if there's not reviews)-->
+          <div class="card-body">
+            <h5 class="card-title name-font-size">Rating: <%= mask.rating %>%</h5>
+          </div>
+        <% end %>
         <ul class="list-group list-group-flush">
           <% unless mask.price.nil? %>
             <li class="list-group-item others-font-size"><%= mask.price % 1 == 0 ? mask.price.truncate : mask.price %>€/day</li>

@@ -18,13 +18,20 @@
     <hr>
     <h3><%= @user.first_name %> reservations as customer:</h3>
     <% @user.reservations.each do |reservation| %>
-      <% if reservation.reservation_status(reservation.start_time, reservation.end_time) != 'expired' %>
-        <%= link_to reservation.mask.description, reservation_path(reservation.id) %><br>
-        <h5>mask: <%= reservation.mask.name %></h5>
-        <p>from: <%= reservation.start_time %></p>
-        <p>to: <%= reservation.end_time %></p>
-        <p>price: <%= reservation.mask.price %></p>
-        <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
+      <% unless reservation.deleted %>
+        <% if reservation.reservation_status(reservation.start_time, reservation.end_time) != 'expired' %>
+          <br>
+          <h5><%= link_to reservation.mask.name, reservation_path(reservation.id) %></h5>
+          <p>from: <%= reservation.start_time %></p>
+          <p>to: <%= reservation.end_time %></p>
+          <p>price: <%= reservation.mask.price %></p>
+          <% reservation_status = reservation.confirmed ? "confirmed" : "pending" %>
+          <p>status: <%= reservation_status %></p>
+          <% if reservation.confirmed != true %>
+            <%= button_to 'cancel reservation', cancel_reservation_path(mask_id: reservation.mask.id, id: reservation.id) %>
+          <% end %>
+          <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
+        <% end %>
       <% end %>
     <% end %>
 
@@ -36,13 +43,21 @@
     <h3><%= @user.first_name %> reservations as owner:</h3>
     <% @user.masks.each do |mask|
         mask.reservations.each do |reservation| %>
-          <% if reservation.reservation_status(reservation.start_time, reservation.end_time) != 'expired' %>
-            <%= link_to reservation.mask.description, reservation_path(reservation.id) %>
-            <h5>mask: <%= reservation.mask.name %></h5>
-            <p>from: <%= reservation.start_time %></p>
-            <p>to: <%= reservation.end_time %></p>
-            <p>price: <%= reservation.mask.price %></p>
-            <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
+          <% unless reservation.deleted %>
+            <% if reservation.reservation_status(reservation.start_time, reservation.end_time) != 'expired' %>
+              <%= link_to reservation.mask.description, reservation_path(reservation.id) %>
+              <h5>mask: <%= reservation.mask.name %></h5>
+              <p>from: <%= reservation.start_time %></p>
+              <p>to: <%= reservation.end_time %></p>
+              <p>price: <%= reservation.mask.price %></p>
+              <% reservation_status = reservation.confirmed ? "confirmed" : "pending" %>
+              <p>status: <%= reservation_status %></p>
+              <% if reservation.confirmed != true %>
+                <%= button_to 'confirm reservation', confirm_reservation_path(mask_id: mask.id, id: reservation.id) %>
+                <%= button_to 'cancel reservation', cancel_reservation_path(mask_id: mask.id, id: reservation.id) %>
+              <% end %>
+              <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
+            <% end %>
           <% end %>
         <% end %>
 

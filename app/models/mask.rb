@@ -6,6 +6,7 @@ class Mask < ApplicationRecord
   validates :description, presence: true
   validates :condition, presence: true
   validates :size, presence: true, inclusion: { in: %w[Child Adult Hagrid] }
+  has_one_attached :photo
 
   # include PgSearch::Model
   # pg_search_scope :global_search,

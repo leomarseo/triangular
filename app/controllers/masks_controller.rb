@@ -37,7 +37,7 @@ class MasksController < ApplicationController
     mask.user = current_user
     mask.user.address = current_user.address
     mask.save
-    redirect_to pages_dashboard_path
+    redirect_to pages_masks_path
   end
 
   def show
@@ -53,7 +53,13 @@ class MasksController < ApplicationController
   def update
     @mask = Mask.find(params[:id])
     @mask.update(mask_params)
-    redirect_to pages_dashboard_path
+    redirect_to pages_masks_path
+  end
+
+  def destroy
+    @mask = Mask.find(params[:id])
+    @mask.update(deleted: true)
+    redirect_to pages_masks_path
   end
 
   private
@@ -63,6 +69,6 @@ class MasksController < ApplicationController
   # end
 
   def mask_params
-    params.require(:mask).permit(:name, :description, :condition, :size, :start_time, :end_time, :price)
+    params.require(:mask).permit(:name, :description, :condition, :size, :start_time, :end_time, :price, :photo)
   end
 end
