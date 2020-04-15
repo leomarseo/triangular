@@ -9,7 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 
 import 'bootstrap';
-import '../../assets/stylesheets/application';
+// import '../../assets/stylesheets/application';
 
 import { initMapbox } from '../plugins/init_mapbox';
 

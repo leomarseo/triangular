@@ -1,9 +1,20 @@
 class MasksController < ApplicationController
   def index
-    if params['mask'].present?
-      @masks = Mask.where(mask_params)
-    else
+    # if params['mask'].present?
+    #   @masks = Mask.where(mask_params)
+    # else
       @masks = Mask.all
+    # end
+
+    @users = User.geocoded # returns users with coordinates
+
+    @markers = @users.map do |user|
+      {
+        lat: user.latitude,
+        lng: user.longitude
+        # infoWindow: render_to_string(partial: "info_window", locals: { user: user })
+
+      }
     end
   end
 
