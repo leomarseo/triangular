@@ -1,3 +1,68 @@
+.main-container {
+  width: 70%;
+  margin: 200px auto;
+  text-align: center;
+}
+
+.flex-container-space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.align-start {
+  align-items: start;
+}
+
+.flex-container-space-around {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.description {
+  text-align: left;
+  h3 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0.09em;
+  }
+  p {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    color: #9f9f9f;
+  }
+}
+
+.review-title-and-percent {
+  h3 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0.09em;
+  }
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
 .body-container {
   background-color: white;
   padding: 144px;
@@ -13,66 +78,5 @@
     font-weight: 500;
   }
 }
-
-
-// .main-container {
-//   width: 90%;
-//   margin: 0 auto;
-//   text-align: center;
-// }
-
-// .title-add-btn {
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: nowrap;
-//   justify-content: space-between;
-//   margin-top: 60px;
-//   margin-bottom: 60px;
-//   align-items: center;
-//   a {
-//     color: white;
-//     background-color: #0e1b2f;
-//     border-radius: 4px;
-//     margin: 0;
-//     padding: 8px;
-//     &:hover {
-//       text-decoration: none;
-//       background-color: #173361;
-//     }
-//   }
-// }
-
-// .listing-container {
-//   display: grid;
-//   grid-template-columns: 1fr 1fr;
-//   grid-gap: 8px;
-// }
-
-// .listing-card {
-//   width: 500px;
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   flex-wrap: nowrap;
-//   background: #efefef;
-// }
-
-// .listing-img {
-//   margin: 16px;
-
-// }
-
-// .image-card-box {
-//   height: 198px;
-//   width: 198px;
-//   object-fit: cover;
-
-// }
-
-// .linsting-info {
-//   text-align: left;
-//   height: 198px;
-//   margin: 16px 0;
-// }
 
 
