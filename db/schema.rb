@@ -99,3 +99,4 @@ ActiveRecord::Schema.define(version: 2020_04_14_124831) do
   add_foreign_key "reservations", "users"
   add_foreign_key "reviews", "users"
 end
+end

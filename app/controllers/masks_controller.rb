@@ -52,6 +52,7 @@ class MasksController < ApplicationController
       }
     end
   end
+end
 
   def new
     @mask = Mask.new
