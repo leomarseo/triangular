@@ -1,54 +1,59 @@
 <div class="container">
-<%= simple_form_for :search, url: masks_path, method: :get do |f| %>
-  <div class="form-inputs" >
-    <%= f.input :location, input_html: {value: @location} %>
-    <%= f.input :start_time, as: :string, input_html: { id: "start_time", value: @start_time } %>
-    <%= f.input :end_time, as: :string, input_html: { id: "end_time", value: @end_time } %>
-    <%= f.input :size, collection: %w[Child Adult Hagrid], include_blank: '', selected: @size %>
-<!--     <%= f.input :condition %>
-    <%= f.input :price %> -->
+  <div id="home-search">
+    <%= simple_form_for :search, url: masks_path, method: :get do |f| %>
+        <div class="form-input-location">
+          <%= f.input :location, input_html: {value: @location}, label: false %>
+        </div>
+        <div class="form-input">
+          <%= f.input :start_time, as: :string, input_html: { id: "start_time" }, placeholder: "#{Date.today.strftime("%B %d, %Y")}", label: false %>
+        </div>
+        <div class="form-input">
+          <%= f.input :end_time, as: :string, input_html: { id: "end_time" }, placeholder: "#{Date.tomorrow.strftime("%B %d, %Y")}", label: false %>
+        </div>
+        <div>
+          <%= f.button :submit, value: "Find Masks", class: "btn-dark", label: false %>
+        </div>
+    <% end %>
   </div>
-  <div class="form-actions">
-    <%= f.button :submit, "Refine Search", class: "btn btn-primary" %>
-  </div>
-<% end %>
 
   <br>
 
-  <div class="cards-in-row centered-box">
-    <% @masks.each do |mask| %>
-      <% next if mask.deleted %>
+<div class="body-container">
+  <div class="cards-container">
+    <div class="row">
+      <% @masks.each do |mask| %>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="card-container">
+            <div class="card-image-section">
+              <% if mask.photo.attached? %>
+                <%= cl_image_tag mask.photo.key, :width=>200, :height=>200, crop: :fill %>
+              <% else %>
+                <%=  image_tag("borat_mask.jpg", class:"card-image") %>
+              <% end %>
+            </div>
+            <div class="card-details-section">
+              <div class="card-all-details">
+                <h4><%= link_to mask.name, mask_path(mask.id) %></h4>
+                <h5><%= mask.description %></h5>
+                <br>
+                <p>condition: <%= mask.condition %></p>
+                <p>size: <%= mask.size %></p>
+              </div>
+              <div class="price">
+                <h4><%= mask.price %>€ / day</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-      <div class="card" style="width: 18rem;">
-        <% if mask.photo.attached? %> <!-- image is take from cloudinary only if attached, otherwise default boris -->
-          <%= cl_image_tag mask.photo.key, crop: :fill, class: 'image-card-box' %>
-        <% else %>
-          <%=  image_tag("borat_mask.jpg", class: 'image-card-box') %>
-        <% end %>
-        <div class="card-body">
-          <h5 class="card-title name-font-size"><%= mask.name %></h5>
-        </div>
-        <% if mask.rating %> <!-- rating shows only if present (method returns false if there's not reviews)-->
-          <div class="card-body">
-            <h5 class="card-title name-font-size">Rating: <%= mask.rating %>%</h5>
-          </div>
-        <% end %>
-        <ul class="list-group list-group-flush">
-          <% unless mask.price.nil? %>
-            <li class="list-group-item others-font-size"><%= mask.price % 1 == 0 ? mask.price.truncate : mask.price %>€/day</li>
-          <% end %>
-          <div class="li-inline">
-            <li class="list-group-item others-font-size"><%= mask.condition %></li>
-            <li class="list-group-item others-font-size"><%= mask.size %></li>
-            <li class="list-group-item others-font-size"><%= mask.user.address %></li>
-          </div>
-        </ul>
-        <div class="card-body">
-          <%= link_to 'show details', mask_path(mask.id), class: 'btn btn-primary btn-block' %>
-        </div>
-      </div>
-    <% end %>
   </div>
+</div>
+
+
+
+
 
 </div> <!-- This is the end of div.container -->
 
