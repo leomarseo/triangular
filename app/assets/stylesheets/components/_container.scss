@@ -1,8 +1,70 @@
-// .main-container {
-//   width: 90%;
-//   margin: 0 auto;
-//   text-align: center;
-// }
+.main-container {
+  width: 70%;
+  margin: 200px auto;
+  text-align: center;
+}
+
+.flex-container-space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.align-start {
+  align-items: start;
+}
+
+.flex-container-space-around {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.description {
+  text-align: left;
+  h3 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0.09em;
+  }
+  p {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    color: #9f9f9f;
+  }
+}
+
+.review-title-and-percent {
+  h3 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0.09em;
+  }
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+
+
 
 // .title-add-btn {
 //   display: flex;

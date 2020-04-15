@@ -1,19 +1,84 @@
-<div>  <!-- questo è il container principale -->
-  <div class="name-and-buttons">
+<!-- !!!! all CSS class are in this component: _container,
+_icon, _index, _button, _image, _text !!!!! -->
+
+<%= render "layouts/navbar" %>
+
+<div class="main-container">
+  <div class="flex-container-space-between name-and-buttons">
     <div class="name-dates">
-      <h2><strong><%= @mask.name %></strong></h2>
-      <!-- qui devo inserire le date -->
+      <h2 class="mask-name-title"><%= @mask.name %></h2>
+      <p><%= @mask.start_time %> - <%= @mask.end_time %></p>
     </div>
     <div class="edit-delete-buttons">
-      <ul>
-        <li><%= link_to 'Edit listing', ..., class: "text-button" %></li>
-        <li><%= link_to 'Delete listing', ..., class: "dark-button" %></li>
+      <ul class="btn-list">
+        <li><%= link_to 'Edit listing', edit_mask_path(@mask.id), class: "text-button" %></li>
+        <li><%= link_to 'Delete listing', mask_path, method: :delete, class: "dark-button" %></li>
       </ul>
     </div>
-
-
   </div>
-</div> <!-- fine del container principale -->
+  <div class="row flex-container-space-between align-start"><!--  questo contiente a sinistra le cose e a destra la foto -->
+    <div class="left-part col-6 align-left">
+
+    <div class="flex-container-space-around icons-container">
+      <div class="icon-and-characteristics align-left">
+        <%= image_tag("credit_card.svg") %>
+        <p><% unless @mask.price.nil? %>
+        <%= @mask.price % 1 == 0 ? @mask.price.truncate : @mask.price %>
+        <% end %>
+        € / DAY
+        </p>
+      </div>
+      <div class="icon-and-characteristics">
+        <%= image_tag("ruler.svg") %>
+        <p><%= @mask.size.upcase %></p>
+      </div>
+      <div class="icon-and-characteristics">
+        <%= image_tag("battery.svg") %>
+        <p><%= @mask.condition.upcase %></p>
+      </div>
+    </div>
+    <hr>
+    <div class="description">
+      <h3>DESCRIPTION</h3>
+      <p><%= @mask.description %></p>
+    </div>
+    <hr>
+    <div class="flex-container-space-between review-title-and-percent">
+      <h3>REVIEWS</h3>
+      <% if @mask.rating  %>
+        <p class="green-percent"><%= @mask.rating %>% POSITIVE</p>
+      <% else %>
+        <p class="grey-dash"><%= "--" %></p>
+      <% end %>
+    </div>
+    <div class=" reviews">
+      <% @mask.reviews.each do |review| %>
+        <div class="d-flex review-box"> <!-- questo è flex --> <!-- position: relation -->
+          <div class="img-vote">
+            <%= image_tag("logo.svg") %> <!-- qui ci va: review.user_id.photo -->
+            <% if @user.rating_as_customer == 1 %>
+              <%= image_tag("thumb_up-24px.svg") %> <!-- position: absolute -->
+            <% else %>
+              <%= image_tag("thumb_down-24px.svg") %>
+            <% end %>
+          </div>
+          <div class="user-content">
+            <p><%= review.user_id %></p>
+            <p><%= review.content %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    </div> <!-- fine div.left -->
+    <div class="right-part col-6 align-right">
+      <% if @mask.photo.attached? %>
+        <%= cl_image_tag @mask.photo.key, crop: :fill %>
+      <% else %>
+        <%=  image_tag("mask_and_soap.jpg", class: "mask-img") %>
+      <% end %>
+    </div>
+  </div> <!-- end of div.row -->
+</div> <!-- end of div.main-container -->
 
 
 

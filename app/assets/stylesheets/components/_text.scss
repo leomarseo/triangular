@@ -1,3 +1,51 @@
+.name-and-buttons {
+  margin-bottom: 40px;
+  h2 {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 42px;
+  }
+  p {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    color: #ababab;
+  }
+}
+
+.mask-name-title {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 42px;
+  text-align: left;
+}
+
+.icon-and-characteristics{
+  p {
+    color: #c6c6c6;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+  }
+}
+
+.green-percent {
+  color: #439b57;
+}
+
+.grey-dash {
+  color: #cbcbcb;
+}
+
+
 // .center-title {
 //   text-align: center;
 // }
