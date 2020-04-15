@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-  before_action :show_user, only: %i[dashboard masks reservations reviews]
+  before_action :show_user, only: %i[dashboard masks reservations reservations_owners reviews]
   def home; end
 
   def dashboard; end
@@ -8,6 +8,8 @@ class PagesController < ApplicationController
   def masks; end
 
   def reservations; end
+
+  def reservations_owners; end
 
   def reviews; end
 

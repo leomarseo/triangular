@@ -23,11 +23,12 @@
 }
 
 .card-details-section {
-  width: 66%;
-  padding: 0 16px;
+  flex-grow: 1;
+  padding: 0 0 0 16px;
 }
 
 .card-all-details {
+  height: 90%;
   h4 {
     font-size: 20px;
   }
@@ -45,4 +46,20 @@
     color: $text-gray;
     margin: 0;
   }
+}
+
+.price {
+  height: 10%;
+  width: 100%;
+  text-align: right;
+  align-content: space-between;
+  h4 {
+    font-size: 16px;
+  }
+}
+
+.card-name-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

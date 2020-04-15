@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get 'pages/masks', to: 'pages#masks'
   get 'pages/reservations', to: 'pages#reservations'
+  get 'pages/reservations_owners', to: 'pages#reservations_owners'
   get 'pages/reviews', to: 'pages#reviews'
 
   post 'masks/:mask_id/reservations/:id', to: 'reservations#confirm', as: 'confirm_reservation'
