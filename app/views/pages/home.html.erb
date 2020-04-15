@@ -1,22 +1,21 @@
 <%= render "layouts/navbar" %>
 
 <div id="home-container">
-  <div class="shadow p-3 mb-5 bg-white rounded sign-box" >
-    <%= simple_form_for :search, url: masks_path, method: :get do |f| %>
-      <div class="form-inputs" >
-        <%= f.input :location %>
-          <%= f.input :start_time, as: :string, input_html: { id: "start_time" } %>
-          <%= f.input :end_time, as: :string, input_html: { id: "end_time" } %>
-          </div>
-          <div class="form-actions">
-            <%= f.button :submit, "Book Now" %>
-          </div>
-        <% end %>
-
-   </div>
-
   <!-- search bar should go here -->
   <div id="home-search">
+        <div class="shadow p-3 mb-5 bg-white rounded sign-box" >
+      <%= simple_form_for :search, url: masks_path, method: :get do |f| %>
+        <div class="form-inputs" >
+          <%= f.input :location %>
+            <%= f.input :start_time, as: :string, input_html: { id: "start_time" } %>
+            <%= f.input :end_time, as: :string, input_html: { id: "end_time" } %>
+            </div>
+            <div class="form-actions">
+              <%= f.button :submit, "Book Now" %>
+            </div>
+          <% end %>
+
+     </div>
   </div>
   <div>
     <h2 id="home-header">Always use protection.</h2>
