@@ -1,7 +1,20 @@
 class MasksController < ApplicationController
   def index
-    if params['mask'].present?
-      @masks = Mask.where(mask_params)
+    if params[:start_time].present? || params[:end_time].present? || params[:location].present?
+      parsed_time_start = Date.parse(params[:start_time])
+      parsed_time_end = Date.parse(params[:end_time])
+      # @masks = Mask.where(:start_time => parsed_date)
+      # @masks = Mask.where([:start_time >= parsed_time_start] && [ :end_time <= parsed_time_end])
+
+      @masks = Mask.joins(:user).where('users.address like ?', "%#{params[:location]}%").where(['start_time < ? AND end_time > ?', parsed_time_start, parsed_time_end])
+      # @masks_dates = @masks.where(['start_time < ? AND end_time > ?', parsed_time_start, parsed_time_end])
+    elsif params[:size].present? || params[:condition].present? || params[:price].present?
+      sql_query = "
+       CAST(size AS text) @@ :query \
+       OR CAST(condition AS text) @@ :query \
+       OR CAST(price AS text) ILIKE :query \
+      "
+      @masks = Mask.where(sql_query, query: "%#{params[:size]}".where(sql_query, query: "%#{params[:condition]}").where(sql_query, query: "%#{params[:price]}"))
     else
       @masks = Mask.all
     end
