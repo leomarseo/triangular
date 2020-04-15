@@ -52,7 +52,6 @@ class MasksController < ApplicationController
         # infoWindow: render_to_string(partial: "info_window", locals: { user: user })
       }
     end
-    raise
   end
 
   def new
