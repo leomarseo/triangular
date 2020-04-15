@@ -9,6 +9,21 @@
     text-decoration: none;
     color: white;
   }
+  &:visited {
+    color: white;
+  }
+}
+
+.secondary-button {
+  color: $navy;
+  background: white;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 14px;
+  padding: 6px 12px;
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .button-pending {
@@ -49,7 +64,7 @@
 // }
 
 
-
+// Unused
 .dark-button {
   padding: 8px;
   color: white;
@@ -67,6 +82,7 @@
   }
 }
 
+// Unused
 .text-button {
   padding: 8px;
   background: #f4f4f4;
