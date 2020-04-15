@@ -1,12 +1,25 @@
-.remember-btn {
-  text-align: left;
-}
-
-.to-masks {
-  color: #828689;
-  &:hover{
-    color: #9FA5A8;
+.primary-button {
+  color: white;
+  background: $navy;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 14px;
+  padding: 6px 12px;
+  &:hover {
     text-decoration: none;
+    color: white;
   }
 }
+
+// .remember-btn {
+//   text-align: left;
+// }
+
+// .to-masks {
+//   color: #828689;
+//   &:hover{
+//     color: #9FA5A8;
+//     text-decoration: none;
+//   }
+// }
 

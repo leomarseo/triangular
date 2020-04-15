@@ -1,20 +1,38 @@
 <div class="container">
-  <div class="input-group mb-3 searchbar">
-    <input type="text" class="form-control" placeholder="Search here..." aria-label="Recipient's username" aria-describedby="basic-addon2">
-    <div class="input-group-append">
-      <button class="btn btn-primary" type="button">Search</button>
-    </div>
+<%= simple_form_for :search, url: masks_path, method: :get do |f| %>
+  <div class="form-inputs" >
+    <%= f.input :location, input_html: {value: @location} %>
+    <%= f.input :start_time, as: :string, input_html: { id: "start_time", value: @start_time } %>
+    <%= f.input :end_time, as: :string, input_html: { id: "end_time", value: @end_time } %>
+    <%= f.input :size, collection: %w[Child Adult Hagrid], include_blank: '', selected: @size %>
+<!--     <%= f.input :condition %>
+    <%= f.input :price %> -->
   </div>
+  <div class="form-actions">
+    <%= f.button :submit, "Refine Search", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+  <br>
 
   <div class="cards-in-row centered-box">
     <% @masks.each do |mask| %>
-      <% return if mask.deleted %>
+      <% next if mask.deleted %>
 
       <div class="card" style="width: 18rem;">
-        <%=  image_tag("borat_mask.jpg", class: 'image-card-box') %>
+        <% if mask.photo.attached? %> <!-- image is take from cloudinary only if attached, otherwise default boris -->
+          <%= cl_image_tag mask.photo.key, crop: :fill, class: 'image-card-box' %>
+        <% else %>
+          <%=  image_tag("borat_mask.jpg", class: 'image-card-box') %>
+        <% end %>
         <div class="card-body">
           <h5 class="card-title name-font-size"><%= mask.name %></h5>
         </div>
+        <% if mask.rating %> <!-- rating shows only if present (method returns false if there's not reviews)-->
+          <div class="card-body">
+            <h5 class="card-title name-font-size">Rating: <%= mask.rating %>%</h5>
+          </div>
+        <% end %>
         <ul class="list-group list-group-flush">
           <% unless mask.price.nil? %>
             <li class="list-group-item others-font-size"><%= mask.price % 1 == 0 ? mask.price.truncate : mask.price %>€/day</li>
@@ -22,6 +40,7 @@
           <div class="li-inline">
             <li class="list-group-item others-font-size"><%= mask.condition %></li>
             <li class="list-group-item others-font-size"><%= mask.size %></li>
+            <li class="list-group-item others-font-size"><%= mask.user.address %></li>
           </div>
         </ul>
         <div class="card-body">

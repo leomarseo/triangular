@@ -14,6 +14,7 @@ class User < ApplicationRecord
   # using update as class method.
   #
   # User.update(111, address: '16 Villa Gaudelet, Paris')
+  has_many :reviews
 
   def rating_as_owner
     return false unless masks.any?

@@ -53,3 +53,46 @@
   <% end %>
 
 </div> <!-- /Masks container -->
+<%= render "layouts/navbar" %>
+
+<div class="body-container">
+  <div class="body-header">
+    <h3>My listings</h3>
+    <%= link_to "New listing", new_mask_path, class:"primary-button" %>
+  </div>
+  <div class="cards-container">
+    <div class="row">
+      <% @user.masks.each do |mask| %>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="card-container">
+            <div class="card-image-section">
+              <% if mask.photo.attached? %>
+                <%= cl_image_tag mask.photo.key, :width=>200, :height=>200, crop: :fill %>
+              <% else %>
+                <%=  image_tag("borat_mask.jpg", class:"card-image") %>
+              <% end %>
+            </div>
+            <div class="card-details-section">
+              <div class="card-all-details">
+                <h4><%= mask.name %></h4>
+                <h5><%= mask.description %></h5>
+                <br>
+                <p>condition: <%= mask.condition %></p>
+                <p>size: <%= mask.size %></p>
+              </div>
+              <div class="price">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+
+<div class=“linsting-info”>
+
+</div>

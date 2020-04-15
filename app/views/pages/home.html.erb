@@ -1,51 +1,29 @@
-<h1 class="center-title bigger-title landing-name">Triangular</h1>
+<%= render "layouts/navbar" %>
 
-<div class="landing-container">
-  <div class="row justify-content-around">
-    <div class="sign-box paragraph">
-      <h2>Enjoy and #staysafe:</h2>
-      <h1>Put on your protection</h1>
-      <br>
-      <p>
-        Triangular© is the brand new service that allows you to rent a mask.<br>
-        A mask is a vital support against global pandemy
-        and it is also an indispensable fancy accessory.<br>
-        The applications are multiple:<br>
-        --> Are you sick and you coughing? <span class="funny-font"><strong>Rent a mask!</strong></span><br>
-        --> Do you want to rob a bank? <span class="funny-font"><strong>Rent a mask!</strong></span><br>
-        --> Are you ugly and you're tired of people judgement? <span class="funny-font"><strong>Rent a mask!</strong></span><br>
-      </p>
-    </div>
+<div id="home-container">
+  <!-- search bar should go here -->
+  <div id="home-search">
+        <div class="shadow p-3 mb-5 bg-white rounded sign-box" >
+      <%= simple_form_for :search, url: masks_path, method: :get do |f| %>
+        <div class="form-inputs" >
+          <%= f.input :location %>
+            <%= f.input :start_time, as: :string, input_html: { id: "start_time" } %>
+            <%= f.input :end_time, as: :string, input_html: { id: "end_time" } %>
+            </div>
+            <div class="form-actions">
+              <%= f.button :submit, "Book Now" %>
+            </div>
+          <% end %>
 
-    <div class="shadow p-3 mb-5 bg-white rounded sign-box" >
-      <form>
-        <h2 class="text-center">Book your Mask</h2>
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="input-place" class="small-caps d-block text-center"><strong>Where</strong></label>
-            <input type="text" class="form-control" id="input-place" placeholder="Es. Los Angeles">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="input-start" class="small-caps d-block text-center"><strong>Start date</strong></label>
-            <input type="text" class="form-control" id="input-start">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="input-end" class="small-caps d-block text-center"><strong>End date</strong></label>
-            <input type="text" class="form-control" id="input-end">
-          </div>
-        </div>
-        <div class="mx-auto my-0 text-center">
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Book now</button>
-        </div>
-      </form>
-    </div>
-  </div> <!-- this close the div.row -->
-</div> <!-- this close the div.container -->
-
-
-
+     </div>
+  </div>
+  <div>
+    <h2 id="home-header">Always use protection.</h2>
+  </div>
+  <div>
+    <p id="home-description">Triangular is a new service that allows you to find a mask from a hoarder, Halloween enthusiast, or retired scuba diver near you. <br><br>Have a spare, unused mask lying around at home? Rent it out to someone in need!<br><br>A mask is vital support against global pandemy and is also an indispensable fashion accessory. Wear one for your health, the health of your loved ones, and for Instagram likes.<br><br>Stay safe, always use protection.</p>
+  </div>
+</div>
 
 
 

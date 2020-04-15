@@ -12,6 +12,8 @@
 
 ActiveRecord::Schema.define(version: 2020_04_14_141926) do
 
+ActiveRecord::Schema.define(version: 2020_04_14_124831) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,8 +60,8 @@ ActiveRecord::Schema.define(version: 2020_04_14_141926) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "deleted", default: false
-    t.boolean "confirmed", default: false
+    t.boolean "deleted"
+    t.boolean "confirmed"
     t.index ["mask_id"], name: "index_reservations_on_mask_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
@@ -71,7 +73,9 @@ ActiveRecord::Schema.define(version: 2020_04_14_141926) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "reviewable_type", null: false
     t.bigint "reviewable_id", null: false
+    t.bigint "user_id", null: false
     t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -93,4 +97,5 @@ ActiveRecord::Schema.define(version: 2020_04_14_141926) do
   add_foreign_key "masks", "users"
   add_foreign_key "reservations", "masks"
   add_foreign_key "reservations", "users"
+  add_foreign_key "reviews", "users"
 end

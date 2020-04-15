@@ -22,6 +22,8 @@ gem 'faker'
 gem 'geocoder'
 
 gem 'devise'
+
+gem 'pg_search', '~> 2.3.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
