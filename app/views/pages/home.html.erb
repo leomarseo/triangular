@@ -1,21 +1,20 @@
-<%= render "layouts/navbar" %>
-
 <div id="home-container">
   <!-- search bar should go here -->
   <div id="home-search">
-        <div class="shadow p-3 mb-5 bg-white rounded sign-box" >
-      <%= simple_form_for :search, url: masks_path, method: :get do |f| %>
-        <div class="form-inputs" >
-          <%= f.input :location %>
-            <%= f.input :start_time, as: :string, input_html: { id: "start_time" } %>
-            <%= f.input :end_time, as: :string, input_html: { id: "end_time" } %>
-            </div>
-            <div class="form-actions">
-              <%= f.button :submit, "Book Now" %>
-            </div>
-          <% end %>
-
-     </div>
+    <%= simple_form_for :search, url: masks_path, method: :get do |f| %>
+        <div class="form-input-location">
+          <%= f.input :location, placeholder: 'Los Angeles', label: false %>
+        </div>
+        <div class="form-input">
+          <%= f.input :start_time, as: :string, input_html: { id: "start_time" }, placeholder: "#{Date.today.strftime("%B %d, %Y")}", label: false %>
+        </div>
+        <div class="form-input">
+          <%= f.input :end_time, as: :string, input_html: { id: "end_time" }, placeholder: "#{Date.tomorrow.strftime("%B %d, %Y")}", label: false %>
+        </div>
+        <div>
+          <%= f.button :submit, class: "btn-dark" %>
+        </div>
+    <% end %>
   </div>
   <div>
     <h2 id="home-header">Always use protection.</h2>

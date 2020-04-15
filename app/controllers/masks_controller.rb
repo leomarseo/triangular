@@ -1,6 +1,7 @@
 class MasksController < ApplicationController
   def index
     real_parameters = params[:search]
+    @masks = Mask.all
     return if real_parameters.nil?
 
     @location = real_parameters[:location]
