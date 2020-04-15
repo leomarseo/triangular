@@ -10,14 +10,14 @@
 #
 puts 'Creating some users...'
 
-real_addresses = ['242 E Fern Ave. Apt. 102 Redlands, CA, U.S.A. 92373',
+real_addresses = ['242 E Fern Ave., Redlands, CA, 92373',
+                  '937 Fulbright Ave., Redlands, CA, 92373',
                   'Franzoesische Allee 30, 72072 Tuebingen, DE',
-                  'Nicolae Grigorescu 18 Bloc 168 Bucharest, RO',
+                  'Nicolae Grigorescu resort',
                   'Strada Cicero Nr. 30 Ploiesti, Prahova, RO',
-                  '937 Fulbright Ave., Redlands, CA, U.S.A. 92373',
                   'Hafengasse 11, 72072 Tuebingen, DE',
                   'Bohnenberger strasse 20, 72072 Tuebingen, DE',
-                  'Rua Cel. Feijo 1129, Porto Alegre, Brazil',
+                  'Rua Coronel Feijó 1129, Higienópolis, Porto Alegre - Rio Grande do Sul, 90340, Brazil',
                   'Via Mario Morgantini 14, Milano, Italia',
                   'Rua Luzitana, 182, Porto Alegre, Brazil']
 # the first 10 users are created using real addresses so that geocode works properly
@@ -31,12 +31,11 @@ real_addresses = ['242 E Fern Ave. Apt. 102 Redlands, CA, U.S.A. 92373',
   )
   puts "#{i + 1}. #{user.first_name} #{user.last_name}"
 end
-
 10.times do |i|
   user = User.create!(
-    first_name: Faker::Games::Dota.hero,
-    last_name: Faker::Games::HeroesOfTheStorm.hero,
-    address: Faker::Address.full_address,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Games::Dota.hero,
+    address: real_addresses[i],
     email: Faker::Internet.email,
     password: Faker::Internet.password
   )
@@ -46,15 +45,35 @@ end
   user = User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    address: Faker::Address.full_address,
+    address: real_addresses[i],
     email: Faker::Internet.email,
     password: Faker::Internet.password
   )
   puts "#{i + 1}. #{user.first_name} #{user.last_name}"
 end
+# 10.times do |i|
+#   user = User.create!(
+#     first_name: Faker::Games::Dota.hero,
+#     last_name: Faker::Games::HeroesOfTheStorm.hero,
+#     address: Faker::Address.full_address,
+#     email: Faker::Internet.email,
+#     password: Faker::Internet.password
+#   )
+#   puts "#{i + 1}. #{user.first_name} #{user.last_name}"
+# end
+# 10.times do |i|
+#   user = User.create!(
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     address: Faker::Address.full_address,
+#     email: Faker::Internet.email,
+#     password: Faker::Internet.password
+#   )
+#   puts "#{i + 1}. #{user.first_name} #{user.last_name}"
+# end
 # create a MASKS seed
-#
-# users = User.all
+
+users = User.all
 user_owner = User.all[0..10]
 array_size = ['Child', 'Adult', 'Hagrid']
 condition = ['used', 'new']
