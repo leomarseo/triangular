@@ -20,12 +20,12 @@
     <div class="shadow p-3 mb-5 bg-white rounded sign-box" >
         <%= simple_form_for :search, method: :get do |f| %>
           <div class="form-inputs" >
-            <%= f.input :location %>
+            <%= f.input :address %>
             <%= f.input :start_time, as: :string, input_html: { id: "start_time" } %>
             <%= f.input :end_time, as: :string, input_html: { id: "end_time" } %>
           </div>
           <div class="form-actions">
-            <%= f.button :submit, "Book Now", input_html: { class: "btn btn-primary btn-lg btn-block" } %>
+            <%= f.button :submit, "Book Now" %>
           </div>
         <% end %>
 
@@ -33,38 +33,3 @@
 
     </div> <!-- this close the div.row -->
 </div> <!-- this close the div.container -->
-
-
-<!--
-    <div class="shadow p-3 mb-5 bg-white rounded sign-box" >
-      <form>
-        <h2 class="text-center">Book your Mask</h2>
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="input-place" class="small-caps d-block text-center"><strong>Where</strong></label>
-            <input type="text" class="form-control" id="input-place" placeholder="Es. Los Angeles">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="input-start" class="small-caps d-block text-center"><strong>Start date</strong></label>
-            <input type="text" class="form-control" id="input-start">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="input-end" class="small-caps d-block text-center"><strong>End date</strong></label>
-            <input type="text" class="form-control" id="input-end">
-          </div>
-        </div>
-        <div class="mx-auto my-0 text-center">
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Book now</button>
-        </div>
-      </form>
-    </div>
-  </div>  this close the div.row
-</div> this close the div.container -->
-
-
-
-
-
-
