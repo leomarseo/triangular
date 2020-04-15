@@ -11,4 +11,7 @@ environment.plugins.prepend('Provide',
   })
 )
 
+// Preventing Babel from transpiling NodeModules packages
+environment.loaders.delete('nodeModules');
+
 module.exports = environment
