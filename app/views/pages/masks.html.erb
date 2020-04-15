@@ -1,36 +1,43 @@
-<div class="main-container">
-  <div class="title-add-btn">
-    <h2>My linstings</h2>
-    <%= link_to 'New listing', new_mask_path %>
+<%= render "layouts/navbar" %>
+
+<div class="body-container">
+  <div class="body-header">
+    <h3>My listings</h3>
+    <%= link_to "New listing", new_mask_path, class:"primary-button" %>
   </div>
-
-
-  <div class="listing-container">
-    <% @user.masks.each do |mask| %>
-      <% unless mask.deleted %>
-          <div class="listing-card">
-            <!-- left -->
-            <div class="listing-img">
+  <div class="cards-container">
+    <div class="row">
+      <% @user.masks.each do |mask| %>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="card-container">
+            <div class="card-image-section">
               <% if mask.photo.attached? %>
                 <%= cl_image_tag mask.photo.key, :width=>200, :height=>200, crop: :fill %>
               <% else %>
-                <%=  image_tag("borat_mask.jpg", class: 'image-card-box') %>
+                <%=  image_tag("borat_mask.jpg", class:"card-image") %>
               <% end %>
             </div>
-            <!-- right -->
-            <div class="linsting-info">
-              <div class="name-description">
-                <p><strong><%= mask.name %></strong></p>
-                <p><%= mask.description %></p>
-
+            <div class="card-details-section">
+              <div class="card-all-details">
+                <h4><%= mask.name %></h4>
+                <h5><%= mask.description %></h5>
+                <br>
+                <p>condition: <%= mask.condition %></p>
+                <p>size: <%= mask.size %></p>
               </div>
-              <div class="condition-size">
-                <p><%= mask.condition %></p>
-                <p><%= mask.size %></p>
+              <div class="price">
+
               </div>
             </div>
           </div>
+        </div>
       <% end %>
-    <% end %>
+    </div>
+
   </div>
+</div>
+
+
+<div class=“linsting-info”>
+
 </div>

@@ -1,3 +1,20 @@
+.body-container {
+  height: 100vh;
+  background-color: white;
+  padding: 144px;
+}
+
+.body-header {
+  margin: 24px auto 48px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h3 {
+    font-size: 24px;
+    font-weight: 500;
+  }
+}
+
 // .main-container {
 //   width: 90%;
 //   margin: 0 auto;

@@ -1,5 +1,5 @@
-<div id="home-background" style="<%= image_tag('splash_background.jpg', id:"home-background") %>">
-  <div class="nav-bar">
+<div id="home-background">
+  <div class="nav-bar colored">
     <div class="nav-bar-logo">
       <%= link_to image_tag('logo.svg', id:"logo"), pages_home_path %>
     </div>
@@ -7,7 +7,7 @@
       <!-- TODO: paths need to be validated; everything now may be in pages routes, reevaluate? -->
       <%= link_to "Book", pages_masks_path %>
       <%= link_to "My reservations", reservations_path %>
-      <%= link_to "My listings", masks_path %>
+      <%= link_to "My listings", pages_masks_path %>
       <!-- TODO: replace static image with avatar image of current_user -->
       <%= link_to image_tag('em.jpg', id:"avatar"), pages_home_path %>
     </div>
