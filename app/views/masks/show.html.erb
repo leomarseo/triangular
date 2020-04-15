@@ -56,14 +56,14 @@ _icon, _index, _button, _image, _text !!!!! -->
         <div class="d-flex review-box"> <!-- questo è flex --> <!-- position: relation -->
           <div class="img-vote">
             <%= image_tag("logo.svg") %> <!-- qui ci va: review.user_id.photo -->
-            <% if @user.rating_as_customer == 1 %>
+            <% if review.rating == 1 %>
               <%= image_tag("thumb_up-24px.svg") %> <!-- position: absolute -->
             <% else %>
               <%= image_tag("thumb_down-24px.svg") %>
             <% end %>
           </div>
           <div class="user-content">
-            <p><%= review.user_id %></p>
+            <p><%= review.user.first_name + ' ' + review.user.last_name %></p>
             <p><%= review.content %></p>
           </div>
         </div>
