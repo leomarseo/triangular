@@ -1,8 +1,44 @@
 // Specific CSS for your home-page
-.landing-form {
-  border: solid 1px #BFBFBF;
+#home-container {
+  padding: 32px 160px;
+  width: auto;
+  text-align: center;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), image-url('splash_background.jpg');
+  background-size: cover;
+  height: 100vh;
+  p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 30px;
+    letter-spacing: -0.015em;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.75);
+  }
+  h2 {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 56px;
+    color: #FFFFFF;
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+  }
 }
 
-body {
-  color: #3F3F3F;
+
+#home-search {
+  height: 200px;
+}
+
+#home-header {
+  text-align: right;
+}
+
+#home-description {
+  padding-top: 48px;
+  width: 40vw;
+  text-align: left;
+  float: right;
 }
