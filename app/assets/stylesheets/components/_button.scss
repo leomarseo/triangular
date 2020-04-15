@@ -50,59 +50,22 @@
   margin-bottom: 4px;
 }
 
-
-// .remember-btn {
-//   text-align: left;
-// }
-
-// .to-masks {
-//   color: #828689;
-//   &:hover{
-//     color: #9FA5A8;
-//     text-decoration: none;
-//   }
-// }
-
-
-// Unused
-.dark-button {
-  padding: 8px;
-  color: white;
-  background: #0e1b2f;
-  border-radius: 4px;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 27px;
-  &:hover {
-    text-decoration:none;
-    background: #1A3A6E;
-    color: white;
-  }
-}
-
-// Unused
-.text-button {
-  padding: 8px;
-  background: #f4f4f4;
-  color: #0e1b2f;
-  border-radius: 4px;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 27px;
-  &:hover {
-    text-decoration:none;
-    color: #1A3A6E;
-  }
-}
-
 .btn-list {
   li {
     display: inline;
   }
 }
 
-
+.find-button {
+  background: #0F1A29;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-sizing: border-box;
+  border-radius: 6px;
+  font-size: 14px;
+  color: white;
+  padding: 8px 16px;
+  &:hover {
+    color: white;
+  }
+  margin-left: 4px;
+}

@@ -31,15 +31,18 @@
 #home-search {
   height: 200px;
   display: flex;
-  width: 100%;
 
-  .form-control.form-control {
-    background-color: black;
-    border: 0.5px solid #343a40;
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-style: none;
+    border-radius: 6px;
+    color: white;
+
   }
 
   .form-input-location {
     flex-grow: 1;
+    padding: 4px;
   }
 
   .simple_form {
@@ -51,20 +54,14 @@
   text-align: right;
 }
 
-
-
 .form-group {
   margin: 0;
 }
 
 .form-input {
   font-family: "Poppins";
+  padding: 4px;
 }
-
-// .form-input-submit {
-//   background-color: black;
-//   color: white !important;
-// }
 
 .simple_form {
   display: flex;
