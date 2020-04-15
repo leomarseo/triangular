@@ -12,7 +12,7 @@
           <%= f.input :end_time, as: :string, input_html: { id: "end_time" }, placeholder: "#{Date.tomorrow.strftime("%B %d, %Y")}", label: false %>
         </div>
         <div>
-          <%= f.button :submit, class: "btn-dark" %>
+          <%= f.button :submit, value: "Go", class: "btn-dark" %>
         </div>
     <% end %>
   </div>
