@@ -43,14 +43,16 @@ class MasksController < ApplicationController
     end
 
     users = @masks.map { |mask| mask.user }.uniq!
-    @users = User.where(id: users.map(&:id)).geocoded
+    unless users.nil?
+      @users = User.where(id: users.map(&:id)).geocoded
 
-    @markers = @users.map do |user|
-      {
-        lat: user.latitude,
-        lng: user.longitude
-        # infoWindow: render_to_string(partial: "info_window", locals: { user: user })
-      }
+      @markers = @users.map do |user|
+        {
+          lat: user.latitude,
+          lng: user.longitude
+          # infoWindow: render_to_string(partial: "info_window", locals: { user: user })
+        }
+      end
     end
   end
 
