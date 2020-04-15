@@ -1,5 +1,14 @@
 class MasksController < ApplicationController
   def index
+    @users = User.geocoded # returns users with coordinates
+    @markers = @users.map do |user|
+      {
+        lat: user.latitude,
+        lng: user.longitude
+        # infoWindow: render_to_string(partial: "info_window", locals: { user: user })
+      }
+    end
+
     real_parameters = params[:search]
     @masks = Mask.all
     return if real_parameters.nil?
@@ -40,17 +49,6 @@ class MasksController < ApplicationController
     #   @masks = Mask.where(sql_query, query: "%#{real_parameters[:size]}%").where(sql_query, query: "%#{real_parameters[:condition]}%").where(sql_query, query: "#{real_parameters[:price]}")
     else
       @masks = Mask.all
-    # end
-
-    @users = User.geocoded # returns users with coordinates
-
-    @markers = @users.map do |user|
-      {
-        lat: user.latitude,
-        lng: user.longitude
-        # infoWindow: render_to_string(partial: "info_window", locals: { user: user })
-
-      }
     end
   end
 
