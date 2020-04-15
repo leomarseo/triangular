@@ -1,3 +1,41 @@
+.primary-button {
+  color: white;
+  background: $navy;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 14px;
+  padding: 6px 12px;
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.button-pending {
+  background-color: rgb(150, 150, 150);
+  color: white;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 1px 4px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.button-confirmed {
+  background-image: linear-gradient(to right, #622953, #0A5690);
+  color: white;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 1px 4px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+
 // .remember-btn {
 //   text-align: left;
 // }

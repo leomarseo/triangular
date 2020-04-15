@@ -1,68 +1,58 @@
-<br>
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" href="reservations">Reservations</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="masks">Listings</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="reviews">Reviews</a>
-  </li>
-</ul>
-<br>
+<%= render "layouts/navbar" %>
 
-<div> <!-- RESERVATIONS CONTAINER -->
-
-  <div> <!-- Reservations(customer) container -->
-    <hr>
-    <h3><%= @user.first_name %> reservations as customer:</h3>
-    <% @user.reservations.each do |reservation| %>
-      <% unless reservation.deleted %>
-        <% if reservation.reservation_status(reservation.start_time, reservation.end_time) != 'expired' %>
-          <br>
-          <h5><%= link_to reservation.mask.name, reservation_path(reservation.id) %></h5>
-          <p>from: <%= reservation.start_time %></p>
-          <p>to: <%= reservation.end_time %></p>
-          <p>price: <%= reservation.mask.price %></p>
-          <% reservation_status = reservation.confirmed ? "confirmed" : "pending" %>
-          <p>status: <%= reservation_status %></p>
-          <% if reservation.confirmed != true %>
-            <%= button_to 'cancel reservation', cancel_reservation_path(mask_id: reservation.mask.id, id: reservation.id) %>
-          <% end %>
-          <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
-        <% end %>
-      <% end %>
-    <% end %>
-
-  </div> <!-- /Reservations(customer) container -->
-
-
-  <div> <!-- Reservations(owner) container -->
-    <hr>
-    <h3><%= @user.first_name %> reservations as owner:</h3>
-    <% @user.masks.each do |mask|
-        mask.reservations.each do |reservation| %>
-          <% unless reservation.deleted %>
-            <% if reservation.reservation_status(reservation.start_time, reservation.end_time) != 'expired' %>
-              <%= link_to reservation.mask.description, reservation_path(reservation.id) %>
-              <h5>mask: <%= reservation.mask.name %></h5>
-              <p>from: <%= reservation.start_time %></p>
-              <p>to: <%= reservation.end_time %></p>
-              <p>price: <%= reservation.mask.price %></p>
-              <% reservation_status = reservation.confirmed ? "confirmed" : "pending" %>
-              <p>status: <%= reservation_status %></p>
-              <% if reservation.confirmed != true %>
-                <%= button_to 'confirm reservation', confirm_reservation_path(mask_id: mask.id, id: reservation.id) %>
-                <%= button_to 'cancel reservation', cancel_reservation_path(mask_id: mask.id, id: reservation.id) %>
+<div class="body-container">
+  <div class="body-header">
+    <h3>My reservations</h3>
+    <div>
+      <%= link_to "As renter", pages_reservations_path, class:"active-tab" %>
+      <span style="display:inline-block; width: 20px;"></span>
+      <%= link_to "As owner", pages_reservations_owners_path, class:"inactive-tab" %>
+    </div>
+  </div>
+  <div class="cards-container">
+    <div class="row">
+      <% @user.reservations.each do |reservation| %>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <div class="card-container">
+            <div class="card-image-section">
+              <% if reservation.mask.photo.attached? %>
+                <%= cl_image_tag reservation.mask.photo.key, :width=>200, :height=>200, crop: :fill %>
+              <% else %>
+                <%=  image_tag("borat_mask.jpg", class:"card-image") %>
               <% end %>
-              <%= link_to 'add review', new_review_path(mask_id: reservation.mask_id, reservation_id: reservation.id), class: 'btn btn-primary' %>
-            <% end %>
-          <% end %>
-        <% end %>
+            </div>
+            <div class="card-details-section">
+              <div class="card-all-details">
+                <div class="card-name-row">
+                  <h4><%= reservation.mask.name %></h4>
+                  <% if reservation.confirmed %>
+                    <div class="button-confirmed">Confirmed</div>
+                  <% else %>
+                    <div class="button-pending">
+                      <% if reservation.reservation_status(reservation.start_time, reservation.end_time) == "expired" %>
+                        Past
+                      <% else %>
+                        Pending
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+                <h5><%= reservation.mask.description %></h5>
+                <br>
+                <p>condition: <%= reservation.mask.condition %></p>
+                <p>size: <%= reservation.mask.size %></p>
+                <p>dates: <%= reservation.mask.start_time %> to <%= reservation.mask.end_time %></p>
+              </div>
+              <div class="price">
+                <h4><%= reservation.mask.price %>€ / day</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-    <% end %>
 
-  </div> <!-- /Reservations(owner) container -->
 
-</div> <!-- /RESERVATIONS CONTAINER -->

@@ -9,6 +9,29 @@
 # create a USERS seed
 #
 puts 'Creating some users...'
+
+real_addresses = ['242 E Fern Ave. Apt. 102 Redlands, CA, U.S.A. 92373',
+                  'Franzoesische Allee 30, 72072 Tuebingen, DE',
+                  'Nicolae Grigorescu 18 Bloc 168 Bucharest, RO',
+                  'Strada Cicero Nr. 30 Ploiesti, Prahova, RO',
+                  '937 Fulbright Ave., Redlands, CA, U.S.A. 92373',
+                  'Hafengasse 11, 72072 Tuebingen, DE',
+                  'Bohnenberger strasse 20, 72072 Tuebingen, DE',
+                  'Rua Cel. Feijo 1129, Porto Alegre, Brazil',
+                  'Via Mario Morgantini 14, Milano, Italia',
+                  'Rua Luzitana, 182, Porto Alegre, Brazil']
+# the first 10 users are created using real addresses so that geocode works properly
+10.times do |i|
+  user = User.create!(
+    first_name: Faker::Games::Dota.hero,
+    last_name: Faker::Games::HeroesOfTheStorm.hero,
+    address: real_addresses[i],
+    email: Faker::Internet.email,
+    password: Faker::Internet.password
+  )
+  puts "#{i + 1}. #{user.first_name} #{user.last_name}"
+end
+
 10.times do |i|
   user = User.create!(
     first_name: Faker::Games::Dota.hero,
@@ -32,9 +55,27 @@ end
 # create a MASKS seed
 #
 # users = User.all
+user_owner = User.all[0..10]
 array_size = ['Child', 'Adult', 'Hagrid']
 condition = ['used', 'new']
-30.times do |i|
+20.times do |i|
+  mask = Mask.create!(
+    name: Faker::DcComics.name,
+    user: user_owner.sample,
+    description: Faker::Books::Dune.saying,
+    condition: condition.sample,
+    size: array_size.sample,
+    start_time: Faker::Date.between(from: 15.days.ago, to: Date.today),
+    end_time: Faker::Date.forward(days: 30)
+    # email: Faker::Internet.email,
+    # password: Faker::Internet.password
+  )
+end
+  puts "Created #{Mask.all.count} masks!"
+
+user_renter = User.all[11..30]
+
+20.times do |i|
   mask = Mask.create!(
     name: Faker::DcComics.name,
     user: User.all.sample,
@@ -57,7 +98,6 @@ def random_owner
   Mask.all.sample.id
 end
 
-user_renter = User.all[11..20]
 all_masks = Mask.all
 all_masks_uid = []
 # booked_mask = Mask.all.where("user_id: #{}")

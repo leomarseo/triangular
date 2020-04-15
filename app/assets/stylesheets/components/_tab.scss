@@ -1,0 +1,32 @@
+.active-tab {
+  color: $navy;
+  background: white;
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 14px;
+  padding: 6px 2px;
+  border-bottom-style: solid;
+  border-bottom-color: $navy;
+  border-bottom-width: 2px;
+  transition: 0.3s;
+  &:hover {
+    text-decoration: none;
+    color: black;
+    transition: 0.3s;
+  }
+}
+
+.inactive-tab {
+  color: rgb(150, 150, 150);
+  background: white;
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 14px;
+  padding: 6px 2px;
+  transition: 0.3s;
+  &:hover {
+    text-decoration: none;
+    color: $navy;
+    transition: 0.3s;
+  }
+}
