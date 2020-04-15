@@ -9,6 +9,18 @@
   height: 240px;
   margin-bottom: 32px;
   padding: 20px;
+  position: relative;
+}
+
+.clickable-card {
+  text-decoration: none;
+  h4 {
+    color: #0E0000;
+  }
+  &:hover {
+    text-decoration: none;
+    color: #0E0000;
+  }
 }
 
 .card-image-section {
@@ -40,6 +52,7 @@
     color: $text-gray;
   }
   p {
+    font-family: "Roboto";
     font-size: 16px;
     font-weight: 300;
     line-height: 24px;

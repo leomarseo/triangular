@@ -6,13 +6,13 @@ _icon, _index, _button, _image, _text !!!!! -->
 <div class="main-container">
   <div class="flex-container-space-between name-and-buttons">
     <div class="name-dates">
-      <h2 class="mask-name-title"><%= @mask.name %></h2>
+      <h3><%= @mask.name %></h3>
       <p><%= @mask.start_time %> - <%= @mask.end_time %></p>
     </div>
     <div class="edit-delete-buttons">
       <ul class="btn-list">
-        <li><%= link_to 'Edit listing', edit_mask_path(@mask.id), class: "text-button" %></li>
-        <li><%= link_to 'Delete listing', mask_path, method: :delete, class: "dark-button" %></li>
+        <li><%= link_to 'Edit listing', edit_mask_path(@mask.id), class: "secondary-button" %></li>
+        <li><%= link_to 'Delete listing', mask_path, method: :delete, class: "primary-button" %></li>
       </ul>
     </div>
   </div>
@@ -39,12 +39,12 @@ _icon, _index, _button, _image, _text !!!!! -->
     </div>
     <hr>
     <div class="description">
-      <h3>DESCRIPTION</h3>
+      <h6>DESCRIPTION</h6>
       <p><%= @mask.description %></p>
     </div>
     <hr>
     <div class="flex-container-space-between review-title-and-percent">
-      <h3>REVIEWS</h3>
+      <h6>REVIEWS</h6>
       <% if @mask.rating  %>
         <p class="green-percent"><%= @mask.rating %>% POSITIVE</p>
       <% else %>
