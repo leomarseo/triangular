@@ -35,7 +35,7 @@
               <div class="card-container">
                 <div class="card-image-section">
                   <% if mask.photo.attached? %>
-                    <%= cl_image_tag mask.photo.key, :width=>180, :height=>180, crop: :fill %>
+                    <%= cl_image_tag mask.photo.key, :width=>180, :height=>200, crop: :fill %>
                   <% else %>
                     <%=  image_tag("v.jpg", class:"card-image") %>
                   <% end %>
@@ -43,12 +43,12 @@
                 <div class="card-details-section">
                   <div class="card-all-details">
                     <h4 class="mt-3"><%= mask.name %></h4>
-                    <h5><%= mask.description.truncate(50) %></h5>
+                    <h5><%= mask.description %></h5>
 
                     <p>condition: <%= mask.condition %></p>
                     <p>size: <%= mask.size %></p>
                     <div class="price">
-                      <h4 class="mr-3 mt-3"><%= mask.price %>€ / day</h4>
+                      <h4 class="mr-3 mt-3"><%= mask.price % 1 == 0 ? mask.price.truncate : mask.price %>€ / day</h4>
                     </div>
                   </div>
                 </div>
