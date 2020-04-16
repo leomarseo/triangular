@@ -8,7 +8,6 @@
   <div class="cards-container">
     <div class="row">
       <% @user.masks.each do |mask| %>
-
         <% if mask.deleted == false %>
           <div class="col-lg-6 col-md-12 col-sm-12">
             <%= link_to mask_path(mask), class:"clickable-card" do %>

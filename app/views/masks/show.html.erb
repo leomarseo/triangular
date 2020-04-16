@@ -71,19 +71,21 @@ _icon, _index, _button, _image, _text !!!!! -->
       <% end %>
     </div>
 
+    <!-- CSS styles are in 'components/review' -->
     <div class="reviews">
       <% @mask.reviews.each do |review| %>
         <div class="d-flex review-box"> <!-- questo è flex --> <!-- position: relation -->
           <div class="img-vote">
-            <%= image_tag("logo.svg") %> <!-- qui ci va: review.user_id.photo -->
+            <!-- TODO: need to replace the 'em.jpg' with actual user photo -->
+            <%= image_tag("em.jpg", class:"avatar reviewer-avatar") %> <!-- qui ci va: review.user_id.photo -->
             <% if review.rating == 1 %>
-              <%= image_tag("thumb_up-24px.svg") %> <!-- position: absolute -->
+              <%= image_tag("thumb_up-24px.svg", width:24, height: 24, class:"review-thumb") %> <!-- position: absolute -->
             <% else %>
-              <%= image_tag("thumb_down-24px.svg") %>
+              <%= image_tag("thumb_down-24px.svg", width:24, height: 24, class:"review-thumb") %>
             <% end %>
           </div>
           <div class="user-content">
-            <p><%= review.user.first_name + ' ' + review.user.last_name %></p>
+            <p class="reviewer-name"><%= review.user.first_name + ' ' + review.user.last_name %></p>
             <p><%= review.content %></p>
           </div>
         </div>

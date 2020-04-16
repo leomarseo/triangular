@@ -1,6 +1,109 @@
-<h5><%= @reservation.mask.description %></h5><br>
-<%= @reservation.mask.condition %><br>
-<%= @reservation.mask.size %><br>
-<%= @reservation.mask.price %><br>
-<%= @reservation.start_time %><br>
-<%= @reservation.end_time %><br>
+<%= render "layouts/navbar" %>
+
+<div class="main-container">
+  <div class="flex-container-space-between align-left name-and-buttons">
+    <div class="name-dates">
+      <div class="completed-button-container">
+        <h3>My reservation for <%= @reservation.mask.name %></h3>
+        <% if @reservation.reservation_status(@reservation.start_time, @reservation.end_time) == 'expired' %>
+          <div class="button-pending reservation-completed">Completed</div>
+        <% end %>
+      </div>
+      <p>Reservation dates: <%= @reservation.start_time %> to <%= @reservation.end_time %></p>
+    </div>
+    <div class="edit-delete-buttons">
+      <ul class="btn-list">
+        <!-- logic for reservation (owner) -->
+        <% if @reservation.mask.user == current_user && @reservation.confirmed == false %>
+          <li><%= link_to 'Decline reservation', mask_reservation_path(@reservation), method: :patch, class: "secondary-button" %></li>
+          <li><%= link_to 'Confirm reservation', confirm_reservation_path(@reservation), method: :post, class: "primary-button" %></li>
+        <% elsif @reservation.mask.user == current_user && @reservation.confirmed == true %>
+          <li><%= link_to 'Cancel reservation', mask_reservation_path(@reservation), method: :patch, class: "primary-button" %></li>
+        <% else %>
+          <!-- logic for reservation (renter) -->
+          <!-- TODO: validate the conditional statement below -->
+          <% already_reviewed = @reservation.mask.reviews.where(user: current_user).count %>
+          <% if @reservation.reservation_status(@reservation.start_time, @reservation.end_time) == 'expired' && already_reviewed == 0 %>
+            <!-- TODO: the path below is not working -->
+            <li><%= link_to 'Leave a review', new_review_path(mask_id: @reservation.mask.id, id: @reservation.id), class: "primary-button" %></li>
+          <% else %>
+            <li><%= link_to 'Cancel reservation', mask_reservation_path(@reservation), method: :patch, class: "primary-button" %></li>
+          <% end %>
+
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
+
+  <div class="row flex-container-space-between align-start"><!--  questo contiente a sinistra le cose e a destra la foto -->
+    <div class="left-part col-6 align-left">
+
+    <div class="flex-container-space-around icons-container">
+      <div class="icon-and-characteristics align-left">
+        <%= image_tag("credit_card.svg", width:64, height:64, crop: :fill, class:"show-icon") %>
+        <p>
+        <% unless @reservation.mask.price.nil? %>
+          <%= @reservation.mask.price % 1 == 0 ? @reservation.mask.price.truncate : @reservation.mask.price %>
+        <% end %>
+        € / DAY
+        </p>
+      </div>
+      <div class="icon-and-characteristics">
+        <%= image_tag("ruler.svg", width:64, height:64, crop: :fill, class:"show-icon") %>
+        <p><%= @reservation.mask.size.upcase %></p>
+      </div>
+      <div class="icon-and-characteristics">
+        <%= image_tag("battery.svg", width:64, height:64, crop: :fill, class:"show-icon") %>
+        <p><%= @reservation.mask.condition.upcase %></p>
+      </div>
+    </div>
+    <hr>
+
+    <!-- CSS is in 'components/container' -->
+    <div class="description">
+      <h6>DESCRIPTION</h6>
+      <p><%= @reservation.mask.description %></p>
+    </div>
+    <br>
+    <hr>
+
+    <div class="flex-container-space-between review-title-and-percent">
+      <h6>REVIEWS</h6>
+      <% if @reservation.mask.rating  %>
+        <p class="color-percent"><%= @reservation.mask.rating %>% POSITIVE</p>
+      <% else %>
+        <p>No ratings yet</p>
+      <% end %>
+    </div>
+
+    <!-- CSS styles are in 'components/review' -->
+    <div class="reviews">
+      <% @reservation.mask.reviews.each do |review| %>
+        <div class="d-flex review-box"> <!-- questo è flex --> <!-- position: relation -->
+          <div class="img-vote">
+            <!-- TODO: need to replace the 'em.jpg' with actual user photo -->
+            <%= image_tag("em.jpg", class:"avatar reviewer-avatar") %> <!-- qui ci va: review.user_id.photo -->
+            <% if review.rating == 1 %>
+              <%= image_tag("thumb_up-24px.svg", width:24, height: 24, class:"review-thumb") %> <!-- position: absolute -->
+            <% else %>
+              <%= image_tag("thumb_down-24px.svg", width:24, height: 24, class:"review-thumb") %>
+            <% end %>
+          </div>
+          <div class="user-content">
+            <p class="reviewer-name"><%= review.user.first_name + ' ' + review.user.last_name %></p>
+            <p><%= review.content %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    </div> <!-- fine div.left -->
+    <div class="right-part col-6 align-right">
+      <% if @reservation.mask.photo.attached? %>
+        <%= cl_image_tag @reservation.mask.photo.key, width:500, crop: :fill %>
+      <% else %>
+        <%=  image_tag("mask_and_soap.jpg", class: "mask-img") %>
+      <% end %>
+    </div>
+  </div> <!-- end of div.row -->
+</div> <!-- end of div.main-container -->

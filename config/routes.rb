@@ -11,10 +11,9 @@ Rails.application.routes.draw do
   get 'pages/reviews', to: 'pages#reviews'
 
   post 'masks/:mask_id/reservations/:id', to: 'reservations#confirm', as: 'confirm_reservation'
-  post 'masks/:mask_id/reservations/:id', to: 'reservations#cancel', as: 'cancel_reservation'
 
   resources :masks do
-    resources :reservations, only: %i[new create edit show update]
+    resources :reservations, only: %i[new create edit show update destroy]
   end
   resources :reservations, only: %i[index show update]
 

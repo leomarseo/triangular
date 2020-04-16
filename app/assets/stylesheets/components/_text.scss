@@ -25,6 +25,15 @@ h6 {
   }
 }
 
+p {
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  color: $text-gray;
+  margin: 0;
+}
+
 // Unused
 .mask-name-title {
   font-family: Poppins;

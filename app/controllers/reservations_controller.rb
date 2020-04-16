@@ -23,18 +23,21 @@ class ReservationsController < ApplicationController
   end
 
   def update
+    @reservation = Reservation.find(params[:id])
+    @reservation.update(deleted: true)
+    redirect_to pages_reservations_path
   end
 
   def confirm
     @reservation = Reservation.find(params[:id])
     @reservation.update(confirmed: true)
-    redirect_to pages_reservations_path
+    redirect_to pages_reservations_owners_path
   end
 
-  def cancel
-    @reservation = Reservation.find(params[:id])
-    @reservation.update(deleted: true)
-    redirect_to pages_reservations_path
+  def destroy
+    # @reservation = Reservation.find(params[:id])
+    # @reservation.update(deleted: true)
+    # redirect_to pages_reservations_path
   end
 
   private

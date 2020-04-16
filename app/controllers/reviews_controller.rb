@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
       @review.reviewable = Mask.find(params['mask_id'])
     else
       # owner
-      @review.reviewable = Reservation.find(params['reservation_id'])
+      @review.reviewable = Reservation.find(params['id'])
     end
   end
 
