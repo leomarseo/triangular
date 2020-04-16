@@ -3,15 +3,12 @@
 <div id="home-container">
   <!-- search bar should go here -->
   <div id="home-search">
-    <%= simple_form_for :search, url: masks_path, method: :get do |f| %>
+    <%= simple_form_for :search, url: masks_path, method: :get, html: { autocomplete: 'off' } do |f| %>
         <div class="form-input-location">
           <%= f.input :location, placeholder: 'Los Angeles', label: false %>
         </div>
-        <div class="form-input">
-          <%= f.input :start_time, as: :string, input_html: { id: "start_time" }, placeholder: "#{Date.today.strftime("%B %d, %Y")}", label: false %>
-        </div>
-        <div class="form-input">
-          <%= f.input :end_time, as: :string, input_html: { id: "end_time" }, placeholder: "#{Date.tomorrow.strftime("%B %d, %Y")}", label: false %>
+        <div class="form-input-date">
+          <%= f.input :start_time, as: :string, input_html: { id: "start_time" }, placeholder: "#{Date.today.strftime("%B %d, %Y")} to #{Date.tomorrow.strftime("%B %d, %Y")}", label: false %>
         </div>
         <div>
           <%= f.button :submit, value: "Find Masks", class:"find-button" %>
