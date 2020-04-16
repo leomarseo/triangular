@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user = current_user
     @review.save
-    redirect_to pages_reviews_path
+    redirect_to reservation_path(params["review"]["id"])
   end
 
   private

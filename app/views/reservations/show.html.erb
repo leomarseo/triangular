@@ -24,8 +24,11 @@
           <!-- TODO: validate the conditional statement below -->
           <% already_reviewed = @reservation.mask.reviews.where(user: current_user).count %>
           <% if @reservation.reservation_status(@reservation.start_time, @reservation.end_time) == 'expired' && already_reviewed == 0 %>
-            <!-- TODO: the path below is not working -->
-            <li><%= link_to 'Leave a review', new_review_path(mask_id: @reservation.mask.id, id: @reservation.id), class: "primary-button" %></li>
+            <li>
+              <button type="button" class="primary-button" data-toggle="modal" data-target="#newReview">
+                Add a review
+              </button>
+            </li>
           <% else %>
             <li><%= link_to 'Cancel reservation', mask_reservation_path(@reservation), method: :patch, class: "primary-button" %></li>
           <% end %>
@@ -107,3 +110,29 @@
     </div>
   </div> <!-- end of div.row -->
 </div> <!-- end of div.main-container -->
+
+
+<!-- Modal for new review popup -->
+
+<div class="modal fade" id="newReview" tabindex="-1" role="dialog" aria-labelledby="newReviewTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add a review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body popup-form-body">
+        <%= simple_form_for(@review) do |f| %>
+          <%= f.input :content, label: "Add your comments", wrapper_html: { class: 'popup-content' }  %>
+          <%= f.input :rating, as: :radio_buttons, collection: [[1, 'Liked'], [0, 'Disliked']], label_method: :second, value_method: :first, wrapper_html: { class: 'popup-rating' } %>
+          <%= f.hidden_field :reviewable_id, value: @reservation.mask_id %>
+          <%= f.hidden_field :reviewable_type, value: "Mask" %>
+          <%= f.hidden_field :id, value: @reservation.id %>
+          <%= f.button :submit, "Submit", class:"popup-submit" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
