@@ -17,10 +17,18 @@
   .simple_form {
     width: 100%;
   }
+
+  .form-input-date {
+    width: 300px;
+  }
 }
 
 #search {
   display: flex;
+
+  #date {
+    width: 300px;
+  }
 }
 
 .form-control {
