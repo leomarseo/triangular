@@ -4,7 +4,7 @@ _icon, _index, _button, _image, _text !!!!! -->
 <%= render "layouts/navbar" %>
 
 <div class="main-container">
-  <div class="flex-container-space-between name-and-buttons">
+  <div class="flex-container-space-between align-left name-and-buttons">
     <div class="name-dates">
       <h3><%= @mask.name %></h3>
       <p><%= @mask.start_time %> - <%= @mask.end_time %></p>
@@ -21,28 +21,32 @@ _icon, _index, _button, _image, _text !!!!! -->
 
     <div class="flex-container-space-around icons-container">
       <div class="icon-and-characteristics align-left">
-        <%= image_tag("credit_card.svg") %>
-        <p><% unless @mask.price.nil? %>
-        <%= @mask.price % 1 == 0 ? @mask.price.truncate : @mask.price %>
+        <%= image_tag("credit_card.svg", width:64, height:64, crop: :fill, class:"show-icon") %>
+        <p>
+        <% unless @mask.price.nil? %>
+          <%= @mask.price % 1 == 0 ? @mask.price.truncate : @mask.price %>
         <% end %>
         € / DAY
         </p>
       </div>
       <div class="icon-and-characteristics">
-        <%= image_tag("ruler.svg") %>
+        <%= image_tag("ruler.svg", width:64, height:64, crop: :fill, class:"show-icon") %>
         <p><%= @mask.size.upcase %></p>
       </div>
       <div class="icon-and-characteristics">
-        <%= image_tag("battery.svg") %>
+        <%= image_tag("battery.svg", width:64, height:64, crop: :fill, class:"show-icon") %>
         <p><%= @mask.condition.upcase %></p>
       </div>
     </div>
     <hr>
+
     <div class="description">
       <h6>DESCRIPTION</h6>
       <p><%= @mask.description %></p>
     </div>
+    <br>
     <hr>
+
     <div class="flex-container-space-between review-title-and-percent">
       <h6>REVIEWS</h6>
       <% if @mask.rating  %>
@@ -51,7 +55,8 @@ _icon, _index, _button, _image, _text !!!!! -->
         <p class="grey-dash"><%= "--" %></p>
       <% end %>
     </div>
-    <div class=" reviews">
+
+    <div class="reviews">
       <% @mask.reviews.each do |review| %>
         <div class="d-flex review-box"> <!-- questo è flex --> <!-- position: relation -->
           <div class="img-vote">

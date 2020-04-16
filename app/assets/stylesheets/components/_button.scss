@@ -5,6 +5,13 @@
   font-weight: 500;
   font-size: 14px;
   padding: 6px 12px;
+
+  &.search {
+    border-radius: 0;
+    height: 36px;
+    margin-left: 4px;
+  }
+
   &:hover {
     text-decoration: none;
     color: white;

@@ -2,8 +2,28 @@
   padding-top: 32px;
   padding-bottom: 40px;
   border-top: 1px solid #dedede;
-  image {
-    width: 73px;
-    height: 53px;
+}
+
+.show-icon {
+  margin-bottom: 8px;
+}
+
+.icon-and-characteristics{
+  p {
+    color: rgb(161, 161, 161);
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
   }
+}
+
+.green-percent {
+  color: #439b57;
+}
+
+.grey-dash {
+  color: #cbcbcb;
 }
