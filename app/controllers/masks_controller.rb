@@ -1,4 +1,6 @@
 class MasksController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
     real_parameters = params[:search]
     @masks = Mask.all
