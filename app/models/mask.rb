@@ -17,3 +17,4 @@ class Mask < ApplicationRecord
     (sum / reviews.count * 100).truncate
   end
 end
+# comment

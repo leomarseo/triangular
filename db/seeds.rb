@@ -13,35 +13,26 @@ puts 'Creating some users...'
 real_addresses = ['242 E Fern Ave., Redlands, CA, 92373',
                   '937 Fulbright Ave., Redlands, CA, 92373',
                   'Franzoesische Allee 30, 72072 Tuebingen, DE',
-                  'Nicolae Grigorescu resort',
                   'Strada Cicero Nr. 30 Ploiesti, Prahova, RO',
                   'Hafengasse 11, 72072 Tuebingen, DE',
                   'Bohnenberger strasse 20, 72072 Tuebingen, DE',
                   'Rua Coronel Feijó 1129, Higienópolis, Porto Alegre - Rio Grande do Sul, 90340, Brazil',
                   'Via Mario Morgantini 14, Milano, Italia',
-                  'Rua Luzitana, 182, Porto Alegre, Brazil']
+                  'Rua Luzitana, 182, Porto Alegre, Brazil',
+                  '2036 University Ave, Berkeley, California 94704, United States of America',
+                  '2530 Durant Ave, Berkeley, California 94704, United States of America',
+                  '1328 6th St, Berkeley, California 94710, United States of America',
+                  '1265 University Ave, Berkeley, California 94702, United States of America',
+                  '1901 Ashby Ave, Berkeley, California 94703, United States of America',
+                  '3084 Claremont Ave, Berkeley, California 94705, United States of America',
+                  'University of California, Berkeley, CA, Berkeley, California 94720, United States of America',
+                  '830 Regal Rd, Berkeley, California 94708, United States of America',
+                  'Great Stoneface Path, Berkeley, California 94707, United States of America',
+                  '1002 Solano Ave, Albany, California 94706, United States of America',
+                  'Ocean View Park, Albany, California 94706, United States of America'
+                  ]
 # the first 10 users are created using real addresses so that geocode works properly
-10.times do |i|
-  user = User.create!(
-    first_name: Faker::Games::Dota.hero,
-    last_name: Faker::Games::HeroesOfTheStorm.hero,
-    address: real_addresses[i],
-    email: Faker::Internet.email,
-    password: Faker::Internet.password
-  )
-  puts "#{i + 1}. #{user.first_name} #{user.last_name}"
-end
-10.times do |i|
-  user = User.create!(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Games::Dota.hero,
-    address: real_addresses[i],
-    email: Faker::Internet.email,
-    password: Faker::Internet.password
-  )
-  puts "#{i + 1}. #{user.first_name} #{user.last_name}"
-end
-10.times do |i|
+20.times do |i|
   user = User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -51,6 +42,27 @@ end
   )
   puts "#{i + 1}. #{user.first_name} #{user.last_name}"
 end
+# 10.times do |i|
+#   user = User.create!(
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     address: real_addresses[i + 9],
+#     email: Faker::Internet.email,
+#     password: Faker::Internet.password
+#   )
+#   puts "#{i + 1}. #{user.first_name} #{user.last_name}"
+# end
+# 10.times do |i|
+#   user = User.create!(
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     address: real_addresses.sample,
+#     email: Faker::Internet.email,
+#     password: Faker::Internet.password
+#   )
+#   puts "#{i + 1}. #{user.first_name} #{user.last_name}"
+# enduser_renter = User.all[11..20]
+
 # 10.times do |i|
 #   user = User.create!(
 #     first_name: Faker::Games::Dota.hero,
@@ -74,38 +86,50 @@ end
 # create a MASKS seed
 
 users = User.all
-user_owner = User.all[0..10]
+user_owner = User.all[0..20]
 array_size = ['Child', 'Adult', 'Hagrid']
 condition = ['used', 'new']
+
+owner_counter = 1
 20.times do |i|
   mask = Mask.create!(
-    name: Faker::DcComics.name,
+    name: Faker::GreekPhilosophers.name,
     user: user_owner.sample,
-    description: Faker::Books::Dune.saying,
+    description: Faker::Lorem.sentence(word_count: 10, supplemental: true, random_words_to_add: 4),
     condition: condition.sample,
     size: array_size.sample,
     start_time: Faker::Date.between(from: 15.days.ago, to: Date.today),
-    end_time: Faker::Date.forward(days: 30)
-    # email: Faker::Internet.email,
-    # password: Faker::Internet.password
+    end_time: Faker::Date.forward(days: 30),
+    price: rand(20).to_f
   )
+  mask.photo.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'masks', "mask_#{owner_counter}.jpg")),
+        filename: "mask_#{owner_counter}.jpg", content_type: 'image/jpg')
+  mask.save
+  owner_counter += 1
 end
   puts "Created #{Mask.all.count} masks!"
 
-user_renter = User.all[11..30]
+user_renter = User.all[11..20]
 
-20.times do |i|
-  mask = Mask.create!(
-    name: Faker::DcComics.name,
+counter = 1
+
+10.times do |i|
+  mask = Mask.new(
+    name: Faker::Artist.name,
     user: User.all.sample,
-    description: Faker::Books::Dune.saying,
+    description: Faker::Lorem.sentence(word_count: 10, supplemental: true, random_words_to_add: 4),
     condition: condition.sample,
     size: array_size.sample,
     start_time: Faker::Date.between(from: 15.days.ago, to: Date.today),
-    end_time: Faker::Date.forward(days: 30)
+    end_time: Faker::Date.forward(days: 30),
+    price: rand(20).to_f
     # email: Faker::Internet.email,
     # password: Faker::Internet.password
   )
+  mask.photo.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'masks', "mask_#{counter}.jpg")),
+        filename: "mask_#{counter}.jpg", content_type: 'image/jpg')
+  mask.save
+  counter += 1
 end
   puts "Created #{Mask.all.count} masks!"
 
@@ -146,7 +170,7 @@ end
 
 20.times do |i|
   reviews = Review.create!(
-    content: Faker::Books::Lovecraft.paragraph,
+    content: Faker::Lorem.sentence(word_count: 5, supplemental: true, random_words_to_add: 4),
     rating: [0, 1].sample,
     # reviewable_type: "Mask",
     # reviewable_id: Mask.all.sample.id
@@ -157,7 +181,7 @@ end
 
 20.times do |i|
   reviews = Review.create!(
-    content: Faker::Books::Lovecraft.paragraph,
+    content: Faker::Lorem.sentence(word_count: 5, supplemental: true, random_words_to_add: 4),
     rating: [0, 1].sample,
     # reviewable_type: "Mask",
     # reviewable_id: Mask.all.sample.id
