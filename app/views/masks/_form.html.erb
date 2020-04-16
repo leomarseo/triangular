@@ -3,14 +3,14 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs" >
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :condition %>
-    <%= f.input :size, collection: %w[Child Adult Hagrid] %>
-    <%= f.input :photo, as: :file %>
-    <%= f.input :start_time, as: :string, input_html: { id: "start_time" } %>
-    <%= f.input :end_time, as: :string, input_html: { id: "end_time" } %>
-    <%= f.input :price, include_blank: true %>
-    <%= f.submit %>
+    <%= f.input :name, input_html: { class: "input-box"} %>
+    <%= f.input :description, input_html: { class: "input-box"} %>
+    <%= f.input :condition, input_html: { class: "input-box"} %>
+    <%= f.input :size, collection: %w[Child Adult Hagrid], input_html: { class: "input-box"} %>
+    <%= f.input :photo, as: :file, input_html: { class: "input-box"} %>
+    <%= f.input :start_time, as: :string, input_html: { id: "start_time", class: "input-box" } %>
+    <%= f.input :end_time, as: :string, input_html: { id: "end_time", class: "input-box" } %>
+    <%= f.input :price, include_blank: true, input_html: { class: "input-box"} %>
+    <%= f.button :submit, value: "Create listing", class:"find-button create-listing" %>
   </div>
 <% end %>

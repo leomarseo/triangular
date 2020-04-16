@@ -4,5 +4,5 @@ import rangePlugin from "flatpickr/dist/plugins/rangePlugin"
 flatpickr("#start_time", {
   altInput: true,
   "plugins": [new rangePlugin({ input: "#end_time"})],
-  minDate: new Date()
+  minDate: new Date(),
 });

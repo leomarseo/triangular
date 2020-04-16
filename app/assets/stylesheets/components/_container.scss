@@ -1,6 +1,6 @@
 .main-container {
   width: 70%;
-  margin: 200px auto;
+  margin: 100px auto;
   text-align: center;
 }
 
@@ -74,5 +74,61 @@
     font-weight: 500;
   }
 }
+
+
+#login-container {
+  width: 340px;
+  margin: 65px auto;
+  color: white;
+  background: rgba(27, 26, 30, 0.5);
+  padding: 30px;
+  border-radius: 8px;
+
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-style: none;
+    border-radius: 6px;
+    color: white;
+  }
+
+  .form-input-location {
+    flex-grow: 1;
+    padding: 4px;
+  }
+
+  .simple_form {
+    width: 100%;
+  }
+
+  .form-group {
+    a {
+      margin: 24px;
+    }
+  }
+
+  .primary-button {
+    margin: 16px;
+  }
+}
+
+.forgot-container {
+  margin: 30px auto;
+  width: 340px;
+  padding: 30px;
+
+  a {
+    margin: 16px;
+  }
+
+  .form-actions {
+    border: 1px solid black;
+    border-radius: 4px;
+    display: left;
+  }
+}
+
+
+
+
 
 
