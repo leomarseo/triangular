@@ -5,7 +5,9 @@
   text-align: center;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), image-url('splash_background.jpg');
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
+  // height: 100%;
+  background-attachment: fixed;
   p {
     font-family: "Roboto";
     font-style: normal;
@@ -39,4 +41,11 @@
   width: 40vw;
   text-align: left;
   float: right;
+}
+
+.signup-links {
+  color: rgba(255, 255, 255, 0.5);
+  a {
+    color: rgba(255, 255, 255, 0.5);
+  }
 }
