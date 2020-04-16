@@ -4,6 +4,7 @@ class MasksController < ApplicationController
   def index
     real_parameters = params[:search]
     @masks = Mask.all
+    @markers = []
     return if real_parameters.nil?
 
     @location = real_parameters[:location].downcase.capitalize unless real_parameters[:location].nil? || real_parameters[:location] == ""
@@ -44,10 +45,10 @@ class MasksController < ApplicationController
       @masks = Mask.all
     end
 
-    users = @masks.map { |mask| mask.user }.uniq!
+
+    users = @masks.map { |mask| mask.user }.uniq
     unless users.nil?
       @users = User.where(id: users.map(&:id)).geocoded
-
       @markers = @users.map do |user|
         {
           lat: user.latitude,
