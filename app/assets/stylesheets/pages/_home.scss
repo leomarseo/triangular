@@ -27,51 +27,14 @@
   }
 }
 
-
-#home-search {
-  height: 200px;
-  display: flex;
-  width: 100%;
-
-  .form-control.form-control {
-    background-color: black;
-    border: 0.5px solid #343a40;
-  }
-
-  .form-input-location {
-    flex-grow: 1;
-  }
-
-  .simple_form {
-    width: 100%;
-  }
-}
-
 #home-header {
   text-align: right;
 }
 
 
-
-.form-group {
-  margin: 0;
-}
-
-.form-input {
-  font-family: "Poppins";
-}
-
-// .form-input-submit {
-//   background-color: black;
-//   color: white !important;
-// }
-
-.simple_form {
-  display: flex;
-  align-items: center;
-}
-
 #home-description {
+  font-family: Poppins !important;
+  font-weight: 300 !important;
   padding-top: 48px;
   width: 40vw;
   text-align: left;

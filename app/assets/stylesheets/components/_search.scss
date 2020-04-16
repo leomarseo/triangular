@@ -1,4 +1,62 @@
-// .searchbar {^
-//   margin-top: 60px;
-//   margin-bottom: 60px;
-// }
+#home-search {
+  height: 200px;
+  display: flex;
+
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-style: none;
+    border-radius: 6px;
+    color: white;
+  }
+
+  .form-input-location {
+    flex-grow: 1;
+    padding: 4px;
+  }
+
+  .simple_form {
+    width: 100%;
+  }
+}
+
+#search {
+  display: flex;
+}
+
+.form-control {
+  background-color: white;
+  border-style: solid;
+  border-color: rgb(220, 220, 220);
+  border-width: 1px;
+  color: $text-gray;
+}
+
+.form-input-location {
+  flex-grow: 1;
+  padding: 4px;
+}
+
+.form-group {
+  margin: 0;
+}
+
+.form-input {
+  font-family: "Poppins";
+  padding: 4px;
+}
+
+.form-input-short {
+  font-family: "Poppins";
+  padding: 4px;
+  width: 160px;
+}
+
+.simple_form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.new-reservation-dates {
+  background-color: black;
+}
