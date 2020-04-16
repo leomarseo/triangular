@@ -117,7 +117,7 @@ counter = 1
   mask = Mask.new(
     name: Faker::Artist.name,
     user: User.all.sample,
-    description: Faker::Lorem.sentence(word_count: 10, supplemental: true, random_words_to_add: 4),
+    description: Faker::Lorem.sentence(word_count: 7, supplemental: false, random_words_to_add: 0),
     condition: condition.sample,
     size: array_size.sample,
     start_time: Faker::Date.between(from: 15.days.ago, to: Date.today),
