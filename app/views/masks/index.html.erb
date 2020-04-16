@@ -6,15 +6,20 @@
   </div>
 
   <div id="search">
-    <%= simple_form_for :search, url: masks_path, method: :get do |f| %>
+    <%= simple_form_for :search, url: masks_path, method: :get, html: { autocomplete: 'off' } do |f| %>
         <div class="form-input-location light">
           <%= f.input :location, input_html: {value: @location}, label: false %>
         </div>
-        <div class="form-input light">
-          <%= f.input :start_time, as: :string, input_html: { id: "start_time" }, placeholder: "#{Date.today.strftime("%B %d, %Y")}", label: false %>
+        <div class="form-input light" id="date">
+          <% unless @full_time.nil? %>
+            <% holder = "#{Date.parse(@full_time.chars.first(10).join).strftime('%B %d, %Y')} to #{Date.parse(@full_time.chars.last(10).join).strftime('%B %d, %Y')}" %>
+          <% else %>
+            <% holder = "select dates" %>
+          <% end %>
+          <%= f.input :start_time, as: :string, input_html: { id: "start_time" }, placeholder: holder, label: false %>
         </div>
         <div class="form-input light">
-          <%= f.input :end_time, as: :string, input_html: { id: "end_time" }, placeholder: "#{Date.tomorrow.strftime("%B %d, %Y")}", label: false %>
+          <%= f.input :size, collection: %w[Child Adult Hagrid], selected: @size, include_blank: true, label: false %>
         </div>
         <div>
           <%= f.button :submit, value: "Find Masks", class: "primary-button search", label: false %>
@@ -44,6 +49,8 @@
                     <br>
                     <p>condition: <%= mask.condition %></p>
                     <p>size: <%= mask.size %></p>
+                    <p><%= mask.user.address %></p>
+                    <p><%= "#{mask.start_time} - #{mask.end_time}" %></p>
                   </div>
                   <div class="price">
                     <h4><%= mask.price %>€ / day</h4>

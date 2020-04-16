@@ -69,6 +69,11 @@
   font-size: 14px;
   color: white;
   padding: 8px 16px;
+  &.create-listing {
+    margin: 0;
+    width: 100%;
+  }
+
   &:hover {
     color: white;
     background-image: linear-gradient(to top right, #05275F, #551A3F);
