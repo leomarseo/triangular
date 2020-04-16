@@ -6,9 +6,9 @@
   </div>
 
   <div id="search">
-    <%= simple_form_for :search, url: masks_path, method: :get, html: { autocomplete: 'off', style: "display: flex;" } do |f| %>
+    <%= simple_form_for :search, url: masks_path, method: :get, html: { autocomplete: 'off', style: "display: flex; width: 100%;" } do |f| %>
         <div class="form-input-location light">
-          <%= f.input :location, input_html: {value: @location}, label: false %>
+          <%= f.input :location, input_html: {value: @location}, placeholder: 'Enter location', label: false %>
         </div>
         <div class="form-input light" id="date">
           <% unless @full_time.nil? %>
@@ -61,7 +61,7 @@
       </div>
     </div>
   </div>
-    
+
   <div class="ml-3"  id="map"
     style="width: 100%; height: 100vh;"
     data-markers="<%= @markers.to_json %>"
