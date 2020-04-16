@@ -5,3 +5,8 @@
 @import "pages/masks";
 @import "pages/index";
 @import "pages/home";
+
+#map {
+  position: sticky;
+  top: 80px;
+}
