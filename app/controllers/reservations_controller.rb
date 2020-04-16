@@ -33,7 +33,7 @@ class ReservationsController < ApplicationController
   def update
     @reservation = Reservation.find(params[:id])
     @reservation.update(deleted: true)
-    redirect_to pages_reservations_path
+    redirect_to pages_reservations_owners_path
   end
 
   def confirm
