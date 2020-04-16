@@ -89,3 +89,27 @@
 .reservation-completed {
   margin-left: 12px;
 }
+
+.large-primary-button {
+  color: white;
+  background: $navy;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 18px;
+  padding: 6px 12px;
+  width: 100%;
+
+  &.search {
+    border-radius: 0;
+    height: 36px;
+    margin-left: 4px;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
+  &:visited {
+    color: white;
+  }
+}
