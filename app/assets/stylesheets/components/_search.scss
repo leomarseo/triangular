@@ -16,6 +16,8 @@
 
   .simple_form {
     width: 100%;
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -51,11 +53,11 @@
   width: 160px;
 }
 
-.simple_form {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
+// .simple_form {
+  // display: flex;
+  // align-items: center;
+  // width: 100%;
+// }
 
 .new-reservation-dates {
   background-color: black;
