@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :home
 
   before_action :show_user, only: %i[dashboard masks reservations reservations_owners reviews]
   def home; end

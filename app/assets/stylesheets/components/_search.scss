@@ -31,6 +31,12 @@
   #date {
     width: 300px;
   }
+
+  .form-actions {
+    border: 1px solid black;
+    border-radius: 4px;
+    display: left;
+  }
 }
 
 .form-control {
@@ -61,11 +67,6 @@
   width: 160px;
 }
 
-// .simple_form {
-//   display: flex;
-//   align-items: center;
-//   width: 100%;
-// }
 
 .new-reservation-dates {
   background-color: black;

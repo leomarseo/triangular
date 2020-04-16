@@ -6,7 +6,7 @@
   </div>
 
   <div id="search">
-    <%= simple_form_for :search, url: masks_path, method: :get, html: { autocomplete: 'off' } do |f| %>
+    <%= simple_form_for :search, url: masks_path, method: :get, html: { autocomplete: 'off', style: "display: flex;" } do |f| %>
         <div class="form-input-location light">
           <%= f.input :location, input_html: {value: @location}, label: false %>
         </div>
@@ -21,9 +21,7 @@
         <div class="form-input light">
           <%= f.input :size, collection: %w[Child Adult Hagrid], selected: @size, include_blank: true, label: false %>
         </div>
-        <div>
-          <%= f.button :submit, value: "Find Masks", class: "primary-button search", label: false %>
-        </div>
+        <%= f.button :submit, value: "Find Masks", class: "primary-button search", label: false %>
     <% end %>
   </div>
   <br>
