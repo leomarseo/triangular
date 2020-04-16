@@ -4,7 +4,9 @@
   <div class="flex-container-space-between align-left name-and-buttons">
     <div class="name-dates">
       <h3><%= @mask.name %></h3>
-      <p>Available: <%= @mask.start_time %> - <%= @mask.end_time %></p>
+      <p>Available: <%= @mask.start_time.strftime('%B %d, %Y') %> - <%= @mask.end_time.strftime('%B %d, %Y') %></p>
+      <br>
+      <p><%= @mask.user.address %></p>
     </div>
 
     <div class="edit-delete-buttons">

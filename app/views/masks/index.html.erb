@@ -45,13 +45,13 @@
                     <h4><%= mask.name %></h4>
                     <h5><%= mask.description %></h5>
                     <br>
-                    <p>condition: <%= mask.condition %></p>
-                    <p>size: <%= mask.size %></p>
-                    <p><%= mask.user.address %></p>
-                    <p><%= "#{mask.start_time} - #{mask.end_time}" %></p>
+                    <p><strong>condition:</strong> <%= mask.condition %></p>
+                    <p><strong>size:</strong> <%= mask.size %></p>
+
+                    <p><strong>available: </strong><%= "#{mask.start_time.strftime('%B %d, %Y')} - #{mask.end_time.strftime('%B %d, %Y')}" %></p>
                   </div>
                   <div class="price">
-                    <h4><%= mask.price %>€ / day</h4>
+                    <h4><%= mask.price % 1 == 0 ? mask.price.truncate : mask.price %>€ / day</h4>
                   </div>
                 </div>
               </div>
