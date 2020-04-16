@@ -64,15 +64,14 @@
 }
 
 .find-button {
-  background: #0F1A29;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-sizing: border-box;
+  background-image: linear-gradient(to top right, #032051, #421430);
   border-radius: 6px;
   font-size: 14px;
   color: white;
   padding: 8px 16px;
   &:hover {
     color: white;
+    background-image: linear-gradient(to top right, #05275F, #551A3F);
   }
   margin-left: 4px;
 }

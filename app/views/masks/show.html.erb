@@ -7,14 +7,29 @@ _icon, _index, _button, _image, _text !!!!! -->
   <div class="flex-container-space-between align-left name-and-buttons">
     <div class="name-dates">
       <h3><%= @mask.name %></h3>
-      <p><%= @mask.start_time %> - <%= @mask.end_time %></p>
+      <p>Available: <%= @mask.start_time %> - <%= @mask.end_time %></p>
     </div>
-    <div class="edit-delete-buttons">
-      <ul class="btn-list">
-        <li><%= link_to 'Edit listing', edit_mask_path(@mask.id), class: "secondary-button" %></li>
-        <li><%= link_to 'Delete listing', mask_path, method: :delete, class: "primary-button" %></li>
-      </ul>
-    </div>
+
+    <!-- if mask.user == current_user, display the below -->
+    <% if @mask.user == current_user %>
+      <div class="edit-delete-buttons">
+        <ul class="btn-list">
+          <li><%= link_to 'Edit listing', edit_mask_path(@mask.id), class: "secondary-button" %></li>
+          <li><%= link_to 'Delete listing', mask_path, method: :delete, class: "primary-button" %></li>
+        </ul>
+      </div>
+
+    <!-- else, display the below -->
+    <% else %>
+      <div class="edit-delete-buttons">
+        <ul class="btn-list">
+          <!-- the path should lead to a new reservation, with confirmed: false -->
+          <li><%= link_to 'Book this mask', new_mask_reservation_path(mask_id: @mask.id), class: "primary-button" %></li>
+        </ul>
+      </div>
+    <% end %>
+
+
   </div>
   <div class="row flex-container-space-between align-start"><!--  questo contiente a sinistra le cose e a destra la foto -->
     <div class="left-part col-6 align-left">
@@ -77,7 +92,7 @@ _icon, _index, _button, _image, _text !!!!! -->
     </div> <!-- fine div.left -->
     <div class="right-part col-6 align-right">
       <% if @mask.photo.attached? %>
-        <%= cl_image_tag @mask.photo.key, crop: :fill %>
+        <%= cl_image_tag @mask.photo.key, width:500, crop: :fill %>
       <% else %>
         <%=  image_tag("mask_and_soap.jpg", class: "mask-img") %>
       <% end %>

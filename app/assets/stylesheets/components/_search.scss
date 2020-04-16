@@ -45,8 +45,18 @@
   padding: 4px;
 }
 
+.form-input-short {
+  font-family: "Poppins";
+  padding: 4px;
+  width: 160px;
+}
+
 .simple_form {
   display: flex;
   align-items: center;
   width: 100%;
+}
+
+.new-reservation-dates {
+  background-color: black;
 }
