@@ -44,10 +44,12 @@
                       <br>
                       <p>condition: <%= reservation.mask.condition %></p>
                       <p>size: <%= reservation.mask.size %></p>
-                      <p>dates: <%= reservation.mask.start_time %> to <%= reservation.mask.end_time %></p>
+                      <p>dates: <%= reservation.mask.start_time.strftime('%B %d, %Y') %> to <%= reservation.mask.end_time.strftime('%B %d, %Y') %></p>
                     </div>
                     <div class="price">
-                      <h4><%= reservation.mask.price % 1 == 0 ? reservation.mask.price.truncate : reservation.mask.price %>€ / day</h4>
+                      <% unless mask.price.nil? %>
+                        <h4><%= reservation.mask.price % 1 == 0 ? reservation.mask.price.truncate : reservation.mask.price %>€ / day</h4>
+                      <% end %>
                     </div>
                   </div>
                 </div>
