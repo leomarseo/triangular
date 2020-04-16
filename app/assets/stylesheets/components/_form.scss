@@ -1,18 +1,32 @@
 .form-container {
   display: flex;
   justify-content: space-between;
-
 }
 
 .form-render {
-
+  width: 400px;
+  margin-right: 96px;
 }
 
-.form-splash {
-  flex-grow: 1;
+.form-inputs {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: $text-gray;
+  background-color: white;
+  .form-control {
+    background-color: white;
+  }
 }
 
 .form-splash-image {
-  object-fit: cover;
-  width: 620px;
+  margin-top: 8px;
+  flex-grow: 1;
+  background-image: image-url('newmask.jpeg');
+  background-size: cover;
+}
+
+.input-box {
+  margin-bottom: 20px;
 }
