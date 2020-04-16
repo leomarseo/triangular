@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i }
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+  has_one_attached :photo
 
   # You can find an object and update it with a one command
   # using update as class method.
