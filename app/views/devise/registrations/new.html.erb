@@ -1,12 +1,12 @@
+<%= render "layouts/navbar" %>
+
 <div id="home-container">
   <div class="main-container">
-    <h2 class="sign-name">Protect yourself and the others:<br>Join Triangular</h2>
+    <h1 id="sign-title">Join Triangular</h2>
 
-    <div class="shadow p-3 mb-5 bg-white rounded sign-box">
+    <div id="sign-up-container">
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
-
-        <div class="form-inputs">
           <%= f.input :first_name,
                       required: true,
                       autofocus: true,
@@ -19,6 +19,10 @@
                       required: true,
                       autofocus: true,
                       input_html: { autocomplete: "address" }%>
+          <%= f.input :photo,
+                      required: false,
+                      autofocus: true,
+                      as: :file %>
           <%= f.input :email,
                       required: true,
                       autofocus: true,
@@ -30,17 +34,13 @@
           <%= f.input :password_confirmation,
                       required: true,
                       input_html: { autocomplete: "new-password" } %>
-        </div>
-
-        <div class="form-actions">
-          <%= f.button :submit, "Sign up", class: "btn btn-primary btn-block" %>
-        </div>
+          <%= f.button :submit, "Sign up", class: "large-primary-button mb-2" %>
       <% end %>
 
       <p>Already a member?</p>
 
       <%= render "devise/shared/links" %>
-    </div> <!-- this closes the div.sign-box -->
+    </div> <!-- this closes the div.sign-up-container -->
   </div> <!-- this closes the div.landing-container -->
 </div> <!-- questo chiude div.home-container -->
 
