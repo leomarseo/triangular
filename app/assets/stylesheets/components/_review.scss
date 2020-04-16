@@ -18,5 +18,40 @@
 }
 
 .review-box {
-  margin: 12px auto;
+  margin: 12px auto 36px auto;
+}
+
+.popup-form-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.popup-content {
+  font-size: 14px;
+  padding: 8px;
+  margin-right: 24px;
+}
+
+.popup-rating {
+  font-size: 14px;
+  padding: 8px;
+}
+
+.col-form-label {
+  color: white;
+}
+
+.popup-submit {
+  text-align: right;
+  margin-top: 24px;
+  margin-left: 80px;
+  color: white;
+  background: $navy;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 14px;
+  padding: 6px 12px;
+  &:hover {
+    color: white;
+  }
 }

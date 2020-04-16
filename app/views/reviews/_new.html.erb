@@ -1,6 +1,3 @@
-<%= render "layouts/navbar" %>
-
-<h3>Review for: <%= @review.reviewable %></h3>
 <%= simple_form_for(@review) do |f| %>
   <%= f.input :content %>
   <%= f.input :rating, collection: 0..1 %>
