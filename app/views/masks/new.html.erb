@@ -1,19 +1,16 @@
-<%= simple_form_for(@mask) do |f| %>
-    <%= f.error_notification %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<%= render "layouts/navbar" %>
 
-    <div class="form-inputs" >
-      <%= f.input :name %>
-      <%= f.input :description %>
-      <%= f.input :condition %>
-      <%= f.input :size, collection: %w[Child Adult Hagrid] %>
-      <%= f.input :photo, as: :file %>
-      <%= f.input :start_time, as: :string, input_html: { id: "start_time" } %>
-      <%= f.input :end_time, as: :string, input_html: { id: "end_time" } %>
-      <%= f.input :price, include_blank: true %>
-    </div>
+<div class="body-container">
+  <div class="body-header">
+    <h3>New listing</h3>
+  </div>
 
-    <div class="form-actions">
-      <%= f.button :submit, "Create Mask" %>
+  <div class="form-container">
+    <div class="form-render">
+      <%= render "form" %>
     </div>
-  <% end %>
+    <div class="form-splash">
+      <%= image_tag "newmask.jpg", class:"form-splash-image" %>
+    </div>
+  </div>
+</div>

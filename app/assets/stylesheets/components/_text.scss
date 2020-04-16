@@ -20,9 +20,18 @@ h6 {
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    line-height: 21px;
-    color: #ababab;
+    line-height: 14px;
+    color: #a1a1a1;
   }
+}
+
+p {
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  color: $text-gray;
+  margin: 0;
 }
 
 // Unused
@@ -34,69 +43,3 @@ h6 {
   line-height: 42px;
   text-align: left;
 }
-
-.icon-and-characteristics{
-  p {
-    color: #c6c6c6;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 21px;
-  }
-}
-
-.green-percent {
-  color: #439b57;
-}
-
-.grey-dash {
-  color: #cbcbcb;
-}
-
-
-// .center-title {
-//   text-align: center;
-// }
-
-// .small-caps {
-//   font-variant: small-caps;
-// }
-
-// .landing-name {
-//   font-family: 'Libre Baskerville', serif;
-//   font-size: 110px;
-//   margin-top: 40px;
-//   margin-bottom: 60px;
-// }
-
-// .sign-name {
-//   font-family: 'Libre Baskerville', serif;
-//   margin-top: 40px;
-//   margin-bottom: 60px;
-//   text-align : center;
-// }
-
-// .funny-font {
-//   font-family: 'Bangers', cursive;
-// }
-
-// .name-font-size {
-//   font-size: 16px;
-// }
-
-// .description-font-size {
-//   font-size: 10px;
-// }
-
-// .others-font-size {
-//   font-size: 12px;
-// }
-
-// .fp-question{
-//   text-align: left;
-//   font-size: 12px;
-//   margin-top: 0;
-//   margin-bottom: 12px;
-// }
-

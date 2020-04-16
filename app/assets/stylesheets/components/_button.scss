@@ -5,6 +5,13 @@
   font-weight: 500;
   font-size: 14px;
   padding: 6px 12px;
+
+  &.search {
+    border-radius: 0;
+    height: 36px;
+    margin-left: 4px;
+  }
+
   &:hover {
     text-decoration: none;
     color: white;
@@ -50,59 +57,30 @@
   margin-bottom: 4px;
 }
 
-
-// .remember-btn {
-//   text-align: left;
-// }
-
-// .to-masks {
-//   color: #828689;
-//   &:hover{
-//     color: #9FA5A8;
-//     text-decoration: none;
-//   }
-// }
-
-
-// Unused
-.dark-button {
-  padding: 8px;
-  color: white;
-  background: #0e1b2f;
-  border-radius: 4px;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 27px;
-  &:hover {
-    text-decoration:none;
-    background: #1A3A6E;
-    color: white;
-  }
-}
-
-// Unused
-.text-button {
-  padding: 8px;
-  background: #f4f4f4;
-  color: #0e1b2f;
-  border-radius: 4px;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 27px;
-  &:hover {
-    text-decoration:none;
-    color: #1A3A6E;
-  }
-}
-
 .btn-list {
   li {
     display: inline;
   }
 }
 
+.find-button {
+  background-image: linear-gradient(to top right, #032051, #421430);
+  border-radius: 6px;
+  font-size: 14px;
+  color: white;
+  padding: 8px 16px;
+  &:hover {
+    color: white;
+    background-image: linear-gradient(to top right, #05275F, #551A3F);
+  }
+  margin-left: 4px;
+}
 
+.completed-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.reservation-completed {
+  margin-left: 12px;
+}

@@ -1,66 +1,70 @@
-<div class="container">
-  <div id="home-search">
+<%= render "layouts/navbar" %>
+
+<div class="body-container">
+  <div class="body-header">
+    <h3>Search masks</h3>
+  </div>
+
+  <div id="search">
     <%= simple_form_for :search, url: masks_path, method: :get do |f| %>
-        <div class="form-input-location">
+        <div class="form-input-location light">
           <%= f.input :location, input_html: {value: @location}, label: false %>
         </div>
-        <div class="form-input">
+        <div class="form-input light">
           <%= f.input :start_time, as: :string, input_html: { id: "start_time" }, placeholder: "#{Date.today.strftime("%B %d, %Y")}", label: false %>
         </div>
-        <div class="form-input">
+        <div class="form-input light">
           <%= f.input :end_time, as: :string, input_html: { id: "end_time" }, placeholder: "#{Date.tomorrow.strftime("%B %d, %Y")}", label: false %>
         </div>
         <div>
-          <%= f.button :submit, value: "Find Masks", class: "btn-dark", label: false %>
+          <%= f.button :submit, value: "Find Masks", class: "primary-button search", label: false %>
         </div>
     <% end %>
   </div>
-
   <br>
 
-<div class="body-container">
-  <div class="cards-container">
-    <div class="row">
-      <% @masks.each do |mask| %>
-        <div class="col-lg-6 col-md-12 col-sm-12">
-          <div class="card-container">
-            <div class="card-image-section">
-              <% if mask.photo.attached? %>
-                <%= cl_image_tag mask.photo.key, :width=>200, :height=>200, crop: :fill %>
-              <% else %>
-                <%=  image_tag("borat_mask.jpg", class:"card-image") %>
-              <% end %>
-            </div>
-            <div class="card-details-section">
-              <div class="card-all-details">
-                <h4><%= link_to mask.name, mask_path(mask.id) %></h4>
-                <h5><%= mask.description %></h5>
-                <br>
-                <p>condition: <%= mask.condition %></p>
-                <p>size: <%= mask.size %></p>
+  <div class="search-body">
+    <div class="search-container">
+      <div class="row">
+        <% @masks.each do |mask| %>
+          <div class="col-12">
+            <%= link_to mask_path(mask), class:"clickable-card" do %>
+              <div class="card-container">
+                <div class="card-image-section">
+                  <% if mask.photo.attached? %>
+                    <%= cl_image_tag mask.photo.key, :width=>180, :height=>200, crop: :fill %>
+                  <% else %>
+                    <%=  image_tag("borat_mask.jpg", class:"card-image") %>
+                  <% end %>
+                </div>
+                <div class="card-details-section">
+                  <div class="card-all-details">
+                    <h4><%= mask.name %></h4>
+                    <h5><%= mask.description %></h5>
+                    <br>
+                    <p>condition: <%= mask.condition %></p>
+                    <p>size: <%= mask.size %></p>
+                  </div>
+                  <div class="price">
+                    <h4><%= mask.price %>€ / day</h4>
+                  </div>
+                </div>
               </div>
-              <div class="price">
-                <h4><%= mask.price %>€ / day</h4>
-              </div>
-            </div>
+            <% end %>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
-
+  </div>
+  <div id="map"
+    style="width: auto; height: 100%;"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
 
 
 
 
-
-</div> <!-- This is the end of div.container -->
-
-<div id="map"
- style="width: 100%; height: 600px;"
- data-markers="<%= @markers.to_json %>"
- data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-</div>
 
 

@@ -4,45 +4,64 @@ _icon, _index, _button, _image, _text !!!!! -->
 <%= render "layouts/navbar" %>
 
 <div class="main-container">
-  <div class="flex-container-space-between name-and-buttons">
+  <div class="flex-container-space-between align-left name-and-buttons">
     <div class="name-dates">
       <h3><%= @mask.name %></h3>
-      <p><%= @mask.start_time %> - <%= @mask.end_time %></p>
+      <p>Available: <%= @mask.start_time %> - <%= @mask.end_time %></p>
     </div>
-    <div class="edit-delete-buttons">
-      <ul class="btn-list">
-        <li><%= link_to 'Edit listing', edit_mask_path(@mask.id), class: "secondary-button" %></li>
-        <li><%= link_to 'Delete listing', mask_path, method: :delete, class: "primary-button" %></li>
-      </ul>
-    </div>
+
+    <!-- if mask.user == current_user, display the below -->
+    <% if @mask.user == current_user %>
+      <div class="edit-delete-buttons">
+        <ul class="btn-list">
+          <li><%= link_to 'Edit listing', edit_mask_path(@mask.id), class: "secondary-button" %></li>
+          <li><%= link_to 'Delete listing', mask_path, method: :delete, class: "primary-button" %></li>
+        </ul>
+      </div>
+
+    <!-- else, display the below -->
+    <% else %>
+      <div class="edit-delete-buttons">
+        <ul class="btn-list">
+          <!-- the path should lead to a new reservation, with confirmed: false -->
+          <li><%= link_to 'Book this mask', new_mask_reservation_path(mask_id: @mask.id), class: "primary-button" %></li>
+        </ul>
+      </div>
+    <% end %>
+
+
   </div>
   <div class="row flex-container-space-between align-start"><!--  questo contiente a sinistra le cose e a destra la foto -->
     <div class="left-part col-6 align-left">
 
     <div class="flex-container-space-around icons-container">
       <div class="icon-and-characteristics align-left">
-        <%= image_tag("credit_card.svg") %>
-        <p><% unless @mask.price.nil? %>
-        <%= @mask.price % 1 == 0 ? @mask.price.truncate : @mask.price %>
+        <%= image_tag("credit_card.svg", width:64, height:64, crop: :fill, class:"show-icon") %>
+        <p>
+        <% unless @mask.price.nil? %>
+          <%= @mask.price % 1 == 0 ? @mask.price.truncate : @mask.price %>
         <% end %>
         € / DAY
         </p>
       </div>
       <div class="icon-and-characteristics">
-        <%= image_tag("ruler.svg") %>
+        <%= image_tag("ruler.svg", width:64, height:64, crop: :fill, class:"show-icon") %>
         <p><%= @mask.size.upcase %></p>
       </div>
       <div class="icon-and-characteristics">
-        <%= image_tag("battery.svg") %>
+        <%= image_tag("battery.svg", width:64, height:64, crop: :fill, class:"show-icon") %>
         <p><%= @mask.condition.upcase %></p>
       </div>
     </div>
     <hr>
+
     <div class="description">
       <h6>DESCRIPTION</h6>
       <p><%= @mask.description %></p>
     </div>
+    <br>
     <hr>
+
     <div class="flex-container-space-between review-title-and-percent">
       <h6>REVIEWS</h6>
       <% if @mask.rating  %>
@@ -51,19 +70,22 @@ _icon, _index, _button, _image, _text !!!!! -->
         <p class="grey-dash"><%= "--" %></p>
       <% end %>
     </div>
-    <div class=" reviews">
+
+    <!-- CSS styles are in 'components/review' -->
+    <div class="reviews">
       <% @mask.reviews.each do |review| %>
         <div class="d-flex review-box"> <!-- questo è flex --> <!-- position: relation -->
           <div class="img-vote">
-            <%= image_tag("logo.svg") %> <!-- qui ci va: review.user_id.photo -->
+            <!-- TODO: need to replace the 'em.jpg' with actual user photo -->
+            <%= image_tag("em.jpg", class:"avatar reviewer-avatar") %> <!-- qui ci va: review.user_id.photo -->
             <% if review.rating == 1 %>
-              <%= image_tag("thumb_up-24px.svg") %> <!-- position: absolute -->
+              <%= image_tag("thumb_up-24px.svg", width:24, height: 24, class:"review-thumb") %> <!-- position: absolute -->
             <% else %>
-              <%= image_tag("thumb_down-24px.svg") %>
+              <%= image_tag("thumb_down-24px.svg", width:24, height: 24, class:"review-thumb") %>
             <% end %>
           </div>
           <div class="user-content">
-            <p><%= review.user.first_name + ' ' + review.user.last_name %></p>
+            <p class="reviewer-name"><%= review.user.first_name + ' ' + review.user.last_name %></p>
             <p><%= review.content %></p>
           </div>
         </div>
@@ -72,7 +94,7 @@ _icon, _index, _button, _image, _text !!!!! -->
     </div> <!-- fine div.left -->
     <div class="right-part col-6 align-right">
       <% if @mask.photo.attached? %>
-        <%= cl_image_tag @mask.photo.key, crop: :fill %>
+        <%= cl_image_tag @mask.photo.key, width:500, crop: :fill %>
       <% else %>
         <%=  image_tag("mask_and_soap.jpg", class: "mask-img") %>
       <% end %>

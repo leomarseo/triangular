@@ -8,31 +8,33 @@
   <div class="cards-container">
     <div class="row">
       <% @user.masks.each do |mask| %>
-        <div class="col-lg-6 col-md-12 col-sm-12">
-          <%= link_to mask_path(mask), class:"clickable-card" do %>
-            <div class="card-container">
-              <div class="card-image-section">
-                <% if mask.photo.attached? %>
-                  <%= cl_image_tag mask.photo.key, :width=>200, :height=>200, crop: :fill %>
-                <% else %>
-                  <%=  image_tag("borat_mask.jpg", class:"card-image") %>
-                <% end %>
-              </div>
-              <div class="card-details-section">
-                <div class="card-all-details">
-                  <h4><%= mask.name %></h4>
-                  <h5><%= mask.description %></h5>
-                  <br>
-                  <p>condition: <%= mask.condition %></p>
-                  <p>size: <%= mask.size %></p>
+        <% if mask.deleted == false %>
+          <div class="col-lg-6 col-md-12 col-sm-12">
+            <%= link_to mask_path(mask), class:"clickable-card" do %>
+              <div class="card-container">
+                <div class="card-image-section">
+                  <% if mask.photo.attached? %>
+                    <%= cl_image_tag mask.photo.key, :width=>180, :height=>200, crop: :fill %>
+                  <% else %>
+                    <%=  image_tag("borat_mask.jpg", class:"card-image") %>
+                  <% end %>
                 </div>
-                <div class="price">
-                  <h4><%= mask.price %>€ / day</h4>
+                <div class="card-details-section">
+                  <div class="card-all-details">
+                    <h4><%= mask.name %></h4>
+                    <h5><%= mask.description %></h5>
+                    <br>
+                    <p>condition: <%= mask.condition %></p>
+                    <p>size: <%= mask.size %></p>
+                  </div>
+                  <div class="price">
+                    <h4><%= mask.price %>€ / day</h4>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %>
-        </div>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
 

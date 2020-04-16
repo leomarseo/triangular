@@ -1,3 +1,5 @@
+<%= render "layouts/navbar" %>
+
 <div id="home-container">
   <!-- search bar should go here -->
   <div id="home-search">
@@ -12,7 +14,7 @@
           <%= f.input :end_time, as: :string, input_html: { id: "end_time" }, placeholder: "#{Date.tomorrow.strftime("%B %d, %Y")}", label: false %>
         </div>
         <div>
-          <%= f.button :submit, value: "Find Masks", class: "btn-dark" %>
+          <%= f.button :submit, value: "Find Masks", class:"find-button" %>
         </div>
     <% end %>
   </div>

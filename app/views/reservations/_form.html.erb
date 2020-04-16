@@ -1,5 +1,13 @@
+<!-- CSS for inputs can be found in 'components/search' -->
+
 <%= simple_form_for reservation, url: mask_reservations_path(@mask.id) do |f| %>
-  <%= f.input :start_time %>
-  <%= f.input :end_time %>
-  <%= f.submit %>
+  <div class="form-input-short">
+    <%= f.input :start_time, as: :string, input_html: { id: "start_time" }, placeholder: "#{Date.today.strftime("%B %d, %Y")}", label: false %>
+  </div>
+  <div class="form-input-short">
+    <%= f.input :end_time, as: :string, input_html: { id: "end_time" }, placeholder: "#{Date.tomorrow.strftime("%B %d, %Y")}", label: false %>
+  </div>
+  <div>
+    <%= f.button :submit, value: "Request to book", class:"find-button" %>
+  </div>
 <% end %>
