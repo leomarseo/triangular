@@ -63,7 +63,8 @@
       <% @mask.reviews.each do |review| %>
         <div class="d-flex review-box"> <!-- questo è flex --> <!-- position: relation -->
           <div class="img-vote">
-            <%= image_tag("logo.svg") %> <!-- qui ci va: review.user_id.photo -->
+            <% review.user.photo.attached? ? picture = review.user.photo : picture = "em.jpg" %>
+            <%= image_tag(picture, class:"avatar reviewer-avatar") %>
             <% if review.rating == 1 %>
               <%= image_tag("thumb_up-24px.svg") %> <!-- position: absolute -->
             <% else %>
