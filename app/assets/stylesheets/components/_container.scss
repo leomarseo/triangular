@@ -151,11 +151,39 @@
 
 
 .forgot-container {
-  margin: 30px auto;
-  width: 340px;
+  width: 380px;
+  margin: 65px auto;
+  color: $navy;
+  background: #efefef;
   padding: 30px;
+  // border-radius: 8px;
 
-  a {
+
+  .form-control {
+    background-color: white;
+    border-style: none;
+    border-radius: 6px;
+    color: white;
+  }
+
+  .form-input-location {
+    flex-grow: 1;
+    padding: 4px;
+  }
+
+  .simple_form {
+    width: 100%;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+    text-align: left;
+    btn {
+      margin: 24px 0;
+    }
+  }
+
+  .primary-button {
     margin: 16px;
   }
 }
