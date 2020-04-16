@@ -36,16 +36,6 @@ ActiveRecord::Schema.define(version: 2020_04_14_141926) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "listings", force: :cascade do |t|
-    t.float "price"
-    t.string "start_time"
-    t.string "end_time"
-    t.bigint "mask_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["mask_id"], name: "index_listings_on_mask_id"
-  end
-
   create_table "masks", force: :cascade do |t|
     t.string "description"
     t.string "condition"
@@ -62,13 +52,13 @@ ActiveRecord::Schema.define(version: 2020_04_14_141926) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.string "start_time"
-    t.string "end_time"
+    t.date "start_time"
+    t.date "end_time"
     t.bigint "mask_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "active"
+    t.boolean "deleted", default: false
     t.boolean "confirmed", default: false
     t.index ["mask_id"], name: "index_reservations_on_mask_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
@@ -87,14 +77,14 @@ ActiveRecord::Schema.define(version: 2020_04_14_141926) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "address"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "address"
     t.float "latitude"
     t.float "longitude"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -102,7 +92,6 @@ ActiveRecord::Schema.define(version: 2020_04_14_141926) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "listings", "masks"
   add_foreign_key "masks", "users"
   add_foreign_key "reservations", "masks"
   add_foreign_key "reservations", "users"

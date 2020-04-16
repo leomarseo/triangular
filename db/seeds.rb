@@ -61,7 +61,8 @@ end
 #     password: Faker::Internet.password
 #   )
 #   puts "#{i + 1}. #{user.first_name} #{user.last_name}"
-# end
+# enduser_renter = User.all[11..20]
+
 # 10.times do |i|
 #   user = User.create!(
 #     first_name: Faker::Games::Dota.hero,
@@ -88,33 +89,47 @@ users = User.all
 user_owner = User.all[0..20]
 array_size = ['Child', 'Adult', 'Hagrid']
 condition = ['used', 'new']
-40.times do |i|
+
+owner_counter = 1
+20.times do |i|
   mask = Mask.create!(
     name: Faker::GreekPhilosophers.name,
     user: user_owner.sample,
-    description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
+    description: Faker::Lorem.sentence(word_count: 10, supplemental: true, random_words_to_add: 4),
     condition: condition.sample,
     size: array_size.sample,
     start_time: Faker::Date.between(from: 15.days.ago, to: Date.today),
-    end_time: Faker::Date.forward(days: 30)
+    end_time: Faker::Date.forward(days: 30),
+    price: rand(20).to_f
   )
+  mask.photo.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'masks', "mask_#{owner_counter}.jpg")),
+        filename: "mask_#{owner_counter}.jpg", content_type: 'image/jpg')
+  mask.save
+  owner_counter += 1
 end
   puts "Created #{Mask.all.count} masks!"
 
 user_renter = User.all[11..20]
 
-20.times do |i|
-  mask = Mask.create!(
+counter = 1
+
+10.times do |i|
+  mask = Mask.new(
     name: Faker::Artist.name,
     user: User.all.sample,
-    description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
+    description: Faker::Lorem.sentence(word_count: 10, supplemental: true, random_words_to_add: 4),
     condition: condition.sample,
     size: array_size.sample,
     start_time: Faker::Date.between(from: 15.days.ago, to: Date.today),
-    end_time: Faker::Date.forward(days: 30)
+    end_time: Faker::Date.forward(days: 30),
+    price: rand(20).to_f
     # email: Faker::Internet.email,
     # password: Faker::Internet.password
   )
+  mask.photo.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'masks', "mask_#{counter}.jpg")),
+        filename: "mask_#{counter}.jpg", content_type: 'image/jpg')
+  mask.save
+  counter += 1
 end
   puts "Created #{Mask.all.count} masks!"
 
@@ -155,7 +170,7 @@ end
 
 20.times do |i|
   reviews = Review.create!(
-    content: Faker::Lorem.sentence(word_count: 15, supplemental: true, random_words_to_add: 4),
+    content: Faker::Lorem.sentence(word_count: 5, supplemental: true, random_words_to_add: 4),
     rating: [0, 1].sample,
     # reviewable_type: "Mask",
     # reviewable_id: Mask.all.sample.id
@@ -166,7 +181,7 @@ end
 
 20.times do |i|
   reviews = Review.create!(
-    content: Faker::Lorem.sentence(word_count: 15, supplemental: true, random_words_to_add: 4),
+    content: Faker::Lorem.sentence(word_count: 5, supplemental: true, random_words_to_add: 4),
     rating: [0, 1].sample,
     # reviewable_type: "Mask",
     # reviewable_id: Mask.all.sample.id
