@@ -1,27 +1,11 @@
-# README
+# Welcome to Triangular
 
-This is a test
+This is a marketplace that allows people in need of masks to meet people who have extra ones, in this period of need!
 
+The team: leomarseo, [khk271](https://github.com/khk271), [giaro710](https://github.com/giaro710), [flazzarin](https://github.com/flazzarin), [stephdinu](https://github.com/stephdinu). Special thanks to [Luigi](https://github.com/dub-G) for the amazing help building this app.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The project was build during our 7th week of Le Wagon coding bootcamp, as an exercise in sight of the real project which will occupy our last two weeks. Turns out that this small project is pretty damn cool itself, so [check it out!](https://lw-triangular.herokuapp.com/pages/home)
 
-Things you may want to cover:
+![preview image](preview.png)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Ruby version: 2.6.5
