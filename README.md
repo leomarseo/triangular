@@ -6,6 +6,6 @@ The team: [leomarseo](https://github.com/LeoMarseo), [khk271](https://github.com
 
 The project was built during our 7th week of Le Wagon coding bootcamp, as an exercise in sight of the real project which will occupy our last two weeks. Turns out that this small project is pretty damn cool itself, so [check it out!](https://lw-triangular.herokuapp.com/pages/home)
 
-![preview gif](preview.gif)
+![preview gif](preview2.gif)
 
 Ruby version: 2.6.5
