@@ -8,13 +8,6 @@ class ReservationsController < ApplicationController
   def show
     @reservation = Reservation.find(params[:id])
     @review = Review.new
-    if (current_user.masks.find_by id: params['id']).nil?
-      # customer
-      @review.reviewable = Mask.find(params['id'])
-    else
-      # owner
-      @review.reviewable = Reservation.find(params['id'])
-    end
   end
 
   def new
